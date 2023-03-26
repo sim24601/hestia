@@ -1,0 +1,178 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboard-commune-container {
+  display: flex;
+}
+
+.description-commune-container {
+  margin: auto;
+}
+
+.description-commune-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0 14px 10px;
+  font-size: 16px;
+  gap: 0 10px;
+}
+
+.description-commune-label {
+  font-weight: 500;
+  margin: 0;
+  color: #3fc1c9;
+}
+
+.description-commune-value {
+  margin: 0;
+  color: #364f6b;
+}
+
+.dashboard-population-container-one {
+  display: flex;
+  flex-direction: row;
+  gap: 0 2vw;
+  padding: 1vh 2vw 2vh 2vw;
+}
+
+.dashboard-population-container-two {
+  padding: 1vh 2vw 2vh 2vw;
+}
+
+.territoire-container {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: block;
+  background-color: rgba(245, 245, 245, 1);
+}
+
+.container {
+  background-color: white;
+  margin: 1%;
+  border-radius: 10px;
+  box-shadow: 1px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s linear, opacity 1s linear;
+}
+
+.label-container {
+  color: #364f6b;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Oswald";
+  margin: 0;
+  padding: 10px;
+}
+
+.icon-label-container {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.icon-container {
+  width: 32px;
+  height: 32px;
+  filter: invert(29%) sepia(19%) saturate(1131%) hue-rotate(171deg)
+      brightness(89%) contrast(88%);
+      margin: 0;
+}
+
+.icon-commune-container {
+  background: url("../img/town.png") left top no-repeat;
+}
+
+.icon-population-container {
+  background: url("../img/population.png") left top no-repeat;
+}
+
+.icon-housing-container {
+  background: url("../img/house.png") left top no-repeat;
+}
+
+.icon-employment-container {
+  background: url("../img/work.png") left top no-repeat;
+}
+
+#map-container-full-screen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#map-container {
+  position: absolute;
+  height: 32.5%;
+  width: 26%;
+}
+
+#commune-container {
+  position: absolute;
+  height: 23%;
+  width: 26%;
+  top: 35%;
+}
+
+#population-container {
+  position: absolute;
+  left: 27.8%;
+  width: 46%;
+  height: 58%;
+}
+
+#housing-container {
+  position: absolute;
+  height: 29%;
+  width: 74%;
+  top: 60.5%;
+}
+
+#employment-container {
+  position: absolute;
+  height: 89.5%;
+  width: 22.5%;
+  left: 75.5%;
+}
+

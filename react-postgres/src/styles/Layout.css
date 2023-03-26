@@ -1,0 +1,25 @@
+  nav {
+    display:flex;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    text-align:right;
+    margin-top:1vw;
+    margin-right:20vw;
+    padding: 1px;
+    flex: 1;
+  }
+  
+  nav ul li {
+    display:inline;
+    padding: 1vw;
+    font-size:1.4vw;
+    font-family:fantasy;
+    text-align:center;
+  }
+
+  nav ul li a {
+    color:white;
+    font-style: normal;
+  }

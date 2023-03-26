@@ -1,0 +1,19 @@
+.map-container {
+    height: 100%;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.map-no-dashboard {
+    /* flex-basis: 100%; */
+    width: 100%;
+}
+
+.map-dashboard {
+    /* flex-basis: 40%; */
+    width: 40%;
+}
