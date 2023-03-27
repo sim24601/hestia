@@ -101,7 +101,7 @@
   color: #364f6b;
   font-size: 20px;
   font-weight: 500;
-  font-family: "Oswald";
+  font-family: "system-ui";
   margin: 0;
   padding: 10px;
 }
@@ -121,19 +121,19 @@
 }
 
 .icon-commune-container {
-  background: url("../img/town.png") left top no-repeat;
+  background: url("../img/commune.png") left top no-repeat;
 }
 
 .icon-population-container {
   background: url("../img/population.png") left top no-repeat;
 }
 
-.icon-housing-container {
-  background: url("../img/house.png") left top no-repeat;
+.icon-risk-container {
+  background: url("../img/risk.png") left top no-repeat;
 }
 
-.icon-employment-container {
-  background: url("../img/work.png") left top no-repeat;
+.icon-immo-container {
+  background: url("../img/immo.png") left top no-repeat;
 }
 
 #map-container-full-screen {
@@ -144,35 +144,36 @@
 
 #map-container {
   position: absolute;
-  height: 32.5%;
-  width: 26%;
+  height: 54%;
+  width: 41%;
 }
 
 #commune-container {
   position: absolute;
-  height: 23%;
-  width: 26%;
-  top: 35%;
+  height: 25%;
+  width: 41%;
+  top: 57%;
 }
 
 #population-container {
   position: absolute;
-  left: 27.8%;
-  width: 46%;
-  height: 58%;
+  left: 42%;
+  width: 27%;
+  height: 54%;
 }
 
-#housing-container {
+#risk-container {
   position: absolute;
-  height: 29%;
-  width: 74%;
-  top: 60.5%;
+  height: 25%;
+  width: 56%;
+  left: 42%;
+  top: 57%;
 }
 
-#employment-container {
+#immo-container {
   position: absolute;
-  height: 89.5%;
-  width: 22.5%;
-  left: 75.5%;
+  height: 54%;
+  width: 27%;
+  left: 71%;
 }
 

@@ -8,8 +8,8 @@ import { updateCommuneCodes } from "../stores/Commune";
 import { updateMapLoad } from "../stores/Map";
 import DashboardCommune from "./Dashboards/DashboardCommune";
 import DashboardPopulation from "./Dashboards/DashboardPopulation";
-import DashboardHousing from "./Dashboards/DashboardHousing";
-import DashboardEmployment from "./Dashboards/DashboardEmployment";
+import DashboardRisk from "./Dashboards/DashboardRisk";
+import DashboardImmo from "./Dashboards/DashboardImmo";
 import KeyFigurePopulationTotal from "./KeyFigures/KeyFigurePopulationTotal";
 import store from "../store";
 import Alert from "@mui/material/Alert";
@@ -66,6 +66,7 @@ function Territoire() {
                                     currentCode: responseData[0].codinsee,
                                     currentCompleteCode:
                                         responseData[0].codinsee,
+                                    properties : responseData[0],
                                 })
                             );
                         }
@@ -154,11 +155,10 @@ function Territoire() {
                                 <p className="icon-container icon-population-container"></p>
                                 <p className="label-container">Population</p>
                             </div>
-                            <KeyFigurePopulationTotal />
                             <DashboardPopulation />
                         </div>
                         <div
-                            id="housing-container"
+                            id="risk-container"
                             className="container"
                             style={{
                                 visibility: visibilityContainer,
@@ -166,13 +166,13 @@ function Territoire() {
                             }}
                         >
                             <div className="icon-label-container">
-                                <p className="icon-container icon-housing-container"></p>
-                                <p className="label-container">Housing</p>
+                                <p className="icon-container icon-risk-container"></p>
+                                <p className="label-container">Risques</p>
                             </div>
-                            <DashboardHousing />
+                            <DashboardRisk />
                         </div>
                         <div
-                            id="employment-container"
+                            id="immo-container"
                             className="container"
                             style={{
                                 visibility: visibilityContainer,
@@ -180,10 +180,10 @@ function Territoire() {
                             }}
                         >
                             <div className="icon-label-container">
-                                <p className="icon-container icon-employment-container"></p>
-                                <p className="label-container">Employment</p>
+                                <p className="icon-container icon-immo-container"></p>
+                                <p className="label-container">Immobilier</p>
                             </div>
-                            <DashboardEmployment />
+                            <DashboardImmo />
                         </div>{" "}
                     </div>
                 ) : (

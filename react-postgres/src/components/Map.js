@@ -224,6 +224,7 @@ function MapWrapper() {
                             currentCode: featureProperties.codinsee,
                             currentCompleteCode:
                                 featureProperties.codinsee,
+                            properties : featureProperties,
                         })
                     );
                 }

@@ -5,6 +5,7 @@ export const commune = createSlice({
   initialState: {
     currentCode: "",
     currentCompleteCode: "", 
+    properties: "",
     // currentCompleteCode: "36044", // for test
   },
   reducers: {
@@ -12,6 +13,7 @@ export const commune = createSlice({
         const payload = props.payload;
         state.currentCode = payload.currentCode;
         state.currentCompleteCode = payload.currentCompleteCode;
+        state.properties = payload.properties;
     }
   },
 });
