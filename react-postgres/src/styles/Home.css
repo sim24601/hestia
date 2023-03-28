@@ -76,12 +76,21 @@
   padding: 1vh 2vw 2vh 2vw;
 }
 
+.home-container {
+  height: 100%;
+  width: 100%;
+  background: url("../img/paris.jpg") left top no-repeat;
+  background-size: cover;
+  position: fixed;
+  display:block;
+}
+
 .territoire-container {
   height: 100%;
   width: 100%;
   position: fixed;
   display: block;
-  background-color: rgba(245, 245, 245, 1);
+  background-color: rgba(255, 198, 56, .1);
 }
 
 .container {
@@ -98,10 +107,10 @@
 }
 
 .label-container {
-  color: #364f6b;
-  font-size: 20px;
-  font-weight: 500;
-  font-family: "system-ui";
+  color: #ffa641;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: fantasy;
   margin: 0;
   padding: 10px;
 }
@@ -115,8 +124,8 @@
 .icon-container {
   width: 32px;
   height: 32px;
-  filter: invert(29%) sepia(19%) saturate(1131%) hue-rotate(171deg)
-      brightness(89%) contrast(88%);
+  filter: invert(80%) sepia(70%) saturate(1110%) hue-rotate(335deg)
+      brightness(80%) contrast(88%);
       margin: 0;
 }
 

@@ -3,6 +3,7 @@ import "../../styles/Home.css";
 import store from "../../store";
 import { commune, updateCommuneCodes } from "../../stores/Commune";
 import { useState } from "react";
+import * as d3 from "d3";
 
 export default function DashboardPopulation() {
     const data = store.getState().commune.properties;
