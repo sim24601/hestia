@@ -3,16 +3,31 @@ import "../../styles/Home.css";
 import store from "../../store";
 import { commune, updateCommuneCodes } from "../../stores/Commune";
 import { useState } from "react";
-import * as d3 from "d3";
+import { CategoryScale, Chart } from "chart.js";
+import BarChart from "../Charts/Barchart";
 
 export default function DashboardPopulation() {
-    const data = store.getState().commune.properties;
+    const datadb = store.getState().commune.properties;
+
+    const labelsAge = ["0-14", "15-29", "30-44", "45-59", "60-74", "75-89", "90+"];
+
+    const dataAge = {
+      labels: labelsAge,
+      datasets: [
+        {
+          label: "Population par âge",
+          backgroundColor: "#a0d8e7",
+          borderColor: "#ffc638",
+          data: [datadb.pop_14, datadb.pop_29, datadb.pop_44, datadb.pop_59, datadb.pop_74, datadb.pop_89, datadb.pop_100],
+        },
+      ],
+    };
+
     return (
         <div>
-            <p>population : {data.population}</p>
-            <p>revenu median : {data.revenu_median}</p>
-            <p>part de centenaires : {Math.round(data.pop_100/data.population*100)/100} %</p>
-            
+            <p>population : {datadb.population}</p>
+            <p>revenu median : {datadb.revenu_median}</p>
+            <BarChart donnee={dataAge} largeur={100} hauteur={150} />
         </div>
     );
 }

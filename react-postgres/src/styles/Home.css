@@ -90,7 +90,7 @@
   width: 100%;
   position: fixed;
   display: block;
-  background-color: rgba(255, 198, 56, .1);
+  background-color: rgba(255, 198, 56, .3);
 }
 
 .container {
@@ -107,7 +107,10 @@
 }
 
 .label-container {
-  color: #ffa641;
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #ffa641;
+  text-decoration-style: dotted;
   font-size: 18px;
   font-weight: 600;
   font-family: fantasy;
