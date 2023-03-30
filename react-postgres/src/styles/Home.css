@@ -80,6 +80,7 @@
   height: 100%;
   width: 100%;
   background: url("../img/paris.jpg") left top no-repeat;
+  /*background: linear-gradient(0deg,  #00cdb1, #a0d8e7);*/
   background-size: cover;
   position: fixed;
   display:block;
@@ -90,7 +91,8 @@
   width: 100%;
   position: fixed;
   display: block;
-  background-color: rgba(255, 198, 56, .3);
+  background: linear-gradient(0deg,  #ffc638, #ffa641 80%);
+  /* background-color: rgba(255, 198, 56, .3); */
 }
 
 .container {
@@ -165,6 +167,8 @@
   height: 25%;
   width: 41%;
   top: 57%;
+  text-align: left;
+  font-size: 14px;
 }
 
 #population-container {
@@ -172,6 +176,8 @@
   left: 42%;
   width: 27%;
   height: 54%;
+  text-align: left;
+  font-size: 14px;
 }
 
 #risk-container {
@@ -180,6 +186,8 @@
   width: 56%;
   left: 42%;
   top: 57%;
+  text-align: left;
+  font-size: 14px;
 }
 
 #immo-container {
@@ -187,5 +195,7 @@
   height: 54%;
   width: 27%;
   left: 71%;
+  text-align: left;
+  font-size: 14px;
 }
 

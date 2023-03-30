@@ -16,8 +16,10 @@ export default function DashboardPopulation() {
       datasets: [
         {
           label: "Population par âge",
-          backgroundColor: "#a0d8e7",
+          backgroundColor: "#ffc638",
           borderColor: "#ffc638",
+          borderRadius : 4,
+          maxBarThickness : 30,
           data: [datadb.pop_14, datadb.pop_29, datadb.pop_44, datadb.pop_59, datadb.pop_74, datadb.pop_89, datadb.pop_100],
         },
       ],
@@ -25,9 +27,11 @@ export default function DashboardPopulation() {
 
     return (
         <div>
+          <ul>
             <p>population : {datadb.population}</p>
             <p>revenu median : {datadb.revenu_median}</p>
             <BarChart donnee={dataAge} largeur={100} hauteur={150} />
+          </ul>
         </div>
     );
 }

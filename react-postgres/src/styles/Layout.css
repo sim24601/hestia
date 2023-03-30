@@ -1,6 +1,7 @@
   nav {
     display:flex;
-    background-color: rgba(255, 166, 65, 1);
+    /* background-color: rgba(255, 166, 65, 1) */
+    background: linear-gradient(0deg,#ffa641, #ff4848);
     color:white;
   }
   

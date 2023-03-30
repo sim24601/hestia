@@ -11,10 +11,10 @@ const config = {
     colors: {
         backgroundColor: [
             "#ff4848", // rouge
-            "#00cdb1",
+            "#00cdb1", // bleu vert
             "#ffc638", // jaune
             "#ffa641", // orange
-            "#a0d8e7",
+            "#a0d8e7", // bleu clair
         ],
         borderColor: [
             "rgb(54, 79, 107)",
