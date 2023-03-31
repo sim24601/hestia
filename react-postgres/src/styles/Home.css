@@ -199,3 +199,26 @@
   font-size: 14px;
 }
 
+.icon-label-container {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.bouton-detail {
+  left : -25px;
+}
+
+.lien-detail {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+#detail-container {
+  position: absolute;
+  display: block;
+  column-count: 3;
+  height: 80%;
+  width: 80%;
+}

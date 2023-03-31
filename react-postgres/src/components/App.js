@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import Territoire from "./Territoire";
 import Climat from "./Climat";
+import DetailPopulation from "./Detail/DetailPopulation";
 import NoPage from "./NoPage";
 import {  Route, Routes } from "react-router";
 import { BrowserRouter} from "react-router-dom";
@@ -25,6 +26,7 @@ export default function App() {
                         </Route>
                         <Route path="climat" element={<Climat />} />
                         <Route path="*" element={<NoPage />} />
+                        <Route path="population" element={<DetailPopulation />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

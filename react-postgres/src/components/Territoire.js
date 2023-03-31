@@ -10,11 +10,13 @@ import DashboardCommune from "./Dashboards/DashboardCommune";
 import DashboardPopulation from "./Dashboards/DashboardPopulation";
 import DashboardRisk from "./Dashboards/DashboardRisk";
 import DashboardImmo from "./Dashboards/DashboardImmo";
-import KeyFigurePopulationTotal from "./KeyFigures/KeyFigurePopulationTotal";
 import store from "../store";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import LoupeIcon from '@mui/icons-material/Loupe';
 
 const { api_url } = require("../settings");
 
@@ -154,6 +156,10 @@ function Territoire() {
                             <div className="icon-label-container">
                                 <p className="icon-container icon-population-container"></p>
                                 <p className="label-container">Population</p>
+                                <Link className="lien-detail" to="/population">
+                                    <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
+                                    </Button>
+                                </Link>
                             </div>
                             <DashboardPopulation />
                         </div>
