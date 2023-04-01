@@ -174,6 +174,10 @@ function Territoire() {
                             <div className="icon-label-container">
                                 <p className="icon-container icon-risk-container"></p>
                                 <p className="label-container">Risques</p>
+                                <Link className="lien-detail" to="/risque">
+                                    <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
+                                    </Button>
+                                </Link>
                             </div>
                             <DashboardRisk />
                         </div>
@@ -188,6 +192,10 @@ function Territoire() {
                             <div className="icon-label-container">
                                 <p className="icon-container icon-immo-container"></p>
                                 <p className="label-container">Immobilier</p>
+                                <Link className="lien-detail" to="/immobilier">
+                                    <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
+                                    </Button>
+                                </Link>
                             </div>
                             <DashboardImmo />
                         </div>{" "}

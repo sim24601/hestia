@@ -8,6 +8,6 @@ export default function BarChart(props) {
     Chart.register(BarController);
     Chart.register(BarElement);
     return(<div>
-        <Bar data={props.donnee} width={props.largeur} height={props.hauteur} options={{maintainAspectRatio: false }}/>
+        <Bar data={props.donnee} width={props.largeur} height={props.hauteur} options={props.options}/>
     </div>)
 };

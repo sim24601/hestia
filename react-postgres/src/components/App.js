@@ -5,6 +5,8 @@ import Home from "./Home";
 import Territoire from "./Territoire";
 import Climat from "./Climat";
 import DetailPopulation from "./Detail/DetailPopulation";
+import DetailImmobilier from "./Detail/DetailImmobilier";
+import DetailRisque from "./Detail/DetailRisque";
 import NoPage from "./NoPage";
 import {  Route, Routes } from "react-router";
 import { BrowserRouter} from "react-router-dom";
@@ -27,6 +29,8 @@ export default function App() {
                         <Route path="climat" element={<Climat />} />
                         <Route path="*" element={<NoPage />} />
                         <Route path="population" element={<DetailPopulation />} />
+                        <Route path="immobilier" element={<DetailImmobilier />} />
+                        <Route path="risque" element={<DetailRisque />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>
