@@ -17,6 +17,7 @@ import Snackbar from "@mui/material/Snackbar";
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import LoupeIcon from '@mui/icons-material/Loupe';
+import DetailImmobilier from "./Detail/DetailImmobilier";
 
 const { api_url } = require("../settings");
 
@@ -33,6 +34,10 @@ function Territoire() {
     const closeAlert = () => {
         setAlert({ open: false, message: "" });
     };
+
+    const showRiskDetail = () => {
+        console.log("test");
+    }
 
     // Check the validity of the commune code in the url
     useEffect(() => {
@@ -155,10 +160,11 @@ function Territoire() {
                         >
                             <div className="icon-label-container">
                                 <p className="icon-container icon-population-container"></p>
-                                <p className="label-container">Population</p>
                                 <Link className="lien-detail" to="/population">
+                                    <p className="label-container">Population
                                     <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
                                     </Button>
+                                    </p>
                                 </Link>
                             </div>
                             <DashboardPopulation />
@@ -173,10 +179,11 @@ function Territoire() {
                         >
                             <div className="icon-label-container">
                                 <p className="icon-container icon-risk-container"></p>
-                                <p className="label-container">Risques</p>
                                 <Link className="lien-detail" to="/risque">
-                                    <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
+                                    <p className="label-container">Risques
+                                    <Button variant="text" className="bouton-detail" onclick={showRiskDetail} startIcon={<LoupeIcon style={{ color: "black" }} />}>
                                     </Button>
+                                    </p>
                                 </Link>
                             </div>
                             <DashboardRisk />
@@ -191,10 +198,11 @@ function Territoire() {
                         >
                             <div className="icon-label-container">
                                 <p className="icon-container icon-immo-container"></p>
-                                <p className="label-container">Immobilier</p>
                                 <Link className="lien-detail" to="/immobilier">
+                                    <p className="label-container">Immobilier
                                     <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
                                     </Button>
+                                    </p>
                                 </Link>
                             </div>
                             <DashboardImmo />

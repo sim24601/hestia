@@ -2,6 +2,7 @@ import React from "react";
 import "../../styles/Home.css";
 import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
+import CloseIcon from '@mui/icons-material/Close'
 import store from "../../store";
 import "../../styles/Home.css";
 
@@ -82,6 +83,7 @@ export default function DetailImmobilier() {
             visibility: "visible",
             opacity: "1",
           }}>
+          <CloseIcon fontSize="large"/>
             <ul style={{
             display: "inline",
           }}>

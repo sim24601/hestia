@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <nav>
-        <Button variant="outlined" startIcon={<HomeIcon style={{ color: "black" }} />}><Link to="/" style={{ color: "black", fontWeight:600, textDecoration:"none" }} >Home</Link></Button>
+        <Button variant="outlined" style={{ border:0 }} startIcon={<HomeIcon style={{ color: "black"}} />}><Link to="/" style={{ color: "black", fontWeight:600, textDecoration:"none" }} >Home</Link></Button>
         <ul>
           <li>
             <Button variant="contained" style={{ backgroundColor: "#ffc638" }} startIcon={<LocationCityIcon style={{ color: "black" }} />}><Link to="/Territoire">Territoire</Link></Button>

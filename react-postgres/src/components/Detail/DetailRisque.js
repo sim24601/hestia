@@ -67,7 +67,7 @@ export default function DetailImmobilier() {
             <ul style={{
             display: "inline",
           }}>
-              <PolarArea donnee={dataRisk} largeur={1200} hauteur={1200} />
+              <PolarArea donnee={dataRisk} largeur={250} hauteur={250} />
               <BarChart donnee={dataEvent} largeur={30} hauteur={35} options={{optionsEvent}}/>
             </ul>
           </div>

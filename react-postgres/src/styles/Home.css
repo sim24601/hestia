@@ -206,13 +206,13 @@
 }
 
 .bouton-detail {
-  left : -25px;
+  left : -12px;
 }
 
 .lien-detail {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
-  text-transform: lowercase;
+  text-transform:capitalize;
 }
 
 #detail-container {
