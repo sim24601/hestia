@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../styles/Home.css";
 import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
@@ -83,7 +84,9 @@ export default function DetailImmobilier() {
             visibility: "visible",
             opacity: "1",
           }}>
-          <CloseIcon fontSize="large"/>
+          <Link to="/territoire">
+            <CloseIcon fontSize="large"/>
+          </Link>
             <ul style={{
             display: "inline",
           }}>

@@ -39,13 +39,16 @@ function MapWrapper() {
 
     const leafIcon = L.Icon.extend({
         options: {
-            iconSize: [35, 35],
+            iconSize: [20, 20],
             iconAnchor: [15, 30],
-            popupAnchor: [0, -25],
+            popupAnchor: [0, -20],
         },
     });
 
     const iconGeocoderMarker = new leafIcon({
+        iconUrl: require("../img/geohome.png"),
+    });
+    const iconTransaction = new leafIcon({
         iconUrl: require("../img/flag.png"),
     });
     let geocoderMarkerLayer = "";
@@ -122,7 +125,54 @@ function MapWrapper() {
             icon: iconGeocoderMarker,
         });
         geocoderMarkerLayer.addTo(mapRef.current);
-    };
+
+        let urlgeo = api_url + "/api/closest/";
+        let urlgeoParams = {
+            lat: geocoderCoordinates[0],
+            lon: geocoderCoordinates[1],
+        };
+        console.log('appel geo');
+        axios.get(urlgeo, {
+                params: urlgeoParams,
+            })
+            .then(function(response) {
+                let transacdata = response.data[0];
+                let transaccoord = [transacdata.lat, transacdata.lon];
+                let transacMarkerLayer = L.marker(transaccoord, {
+                    icon: iconTransaction,
+                });
+                transacMarkerLayer.addTo(mapRef.current);
+                let popuptransaction = `<div class="commune-popup-container">
+                    <div class="commune-popup-line"> 
+                      <span class="commune-popup-title">Annee de mutation: </span> 
+                      <span>${transacdata.annee_mutation}</span>
+                    </div>     
+                    <div class="commune-popup-line"> 
+                      <span class="commune-popup-title">Prix Brut en euros: </span> 
+                      <span>${transacdata.prix_brut}</span>
+                    </div>
+                    <div class="commune-popup-line"> 
+                      <span class="commune-popup-title">Taille du bati en m2 : </span> 
+                      <span>${transacdata.taille_bati}</span>     
+                    </div>
+                    <div class="commune-popup-line"> 
+                      <span class="commune-popup-title">Taille du terrain en m2 : </span> 
+                      <span>${transacdata.taille_terrain}</span>     
+                    </div>
+                    </div>`;
+                    transacMarkerLayer
+                        .bindPopup(popuptransaction, { offset: [100, 80] })
+                        .on("mouseover", function(e) {
+                            this.openPopup();
+                        })
+                        .on("mouseout", function(e) {
+                            this.closePopup();
+                        });
+            })
+            .catch(function(error){
+                    console.log(error);
+            });
+        }
 
     // Remove geocoder and commune layers
     const removeAllLayers = () => {
@@ -156,7 +206,7 @@ function MapWrapper() {
             console.log("test de renvoi", urlApi)
             navigate("/territoire/" + completeCodeCommune);
         }
-        console.log("envoyez la req sur ", urlApi, " avec ", urlApiParams)
+        console.log("envoyez la req sur ", urlApi, " avec ", urlApiParams);
         axios
             .get(urlApi, {
                 params: urlApiParams,
@@ -165,7 +215,6 @@ function MapWrapper() {
                 if (response.status === 200) {
                     let dt = JSON.parse(response.data[0].geom);
                     const feature = turf.multiPolygon(dt["coordinates"]);
-                    console.log("polygone activated ", feature)
                     const featureProperties = response.data[0];
                     // Update the center and zoom values of the map in the store -> useEffect function
                     let centroid = turf.center(feature);
@@ -179,43 +228,13 @@ function MapWrapper() {
                     changeMapCenter(centroidCoordinates);
 
                     let styleCommuneLayer = {
-                        color: "#364F6B",
+                        color: "#00cdb1",
                         weight: 4,
                         opacity: 0.6,
                     };
                     communeLayer = L.geoJSON(feature, {
                         style: styleCommuneLayer,
                     });
-                    let popupCommuneLayer = `<div class="commune-popup-container">
-                    <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">City : </span> 
-                      <span>${featureProperties.nom_commune}</span>
-                    </div>     
-                    <div class="iris-popup-line"> 
-                      <span class="iris-popup-title">Citycode : </span> 
-                      <span>${featureProperties.codinsee}</span>
-                    </div>
-                    <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Name : </span> 
-                      <span>${featureProperties.nb_log}</span>     
-                    </div>
-                    <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Type : </span> 
-                      <span>${featureProperties.nb_apt}</span>     
-                    </div>
-                    <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Iris : </span> 
-                      <span>${featureProperties.revenu_median}</span>     
-                    </div>
-                    </div>`;
-                    communeLayer
-                        .bindPopup(popupCommuneLayer, { offset: [100, 80] })
-                        .on("mouseover", function(e) {
-                            this.openPopup();
-                        })
-                        .on("mouseout", function(e) {
-                            this.closePopup();
-                        });
                     communeLayer.addTo(mapRef.current);
 
                     // Update of the current commune code -> update the width of the map and the dashboard

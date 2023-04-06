@@ -35,10 +35,6 @@ function Territoire() {
         setAlert({ open: false, message: "" });
     };
 
-    const showRiskDetail = () => {
-        console.log("test");
-    }
-
     // Check the validity of the commune code in the url
     useEffect(() => {
         // Put load property to false in the Map store to avoid a problem loading of the Map component
@@ -181,7 +177,7 @@ function Territoire() {
                                 <p className="icon-container icon-risk-container"></p>
                                 <Link className="lien-detail" to="/risque">
                                     <p className="label-container">Risques
-                                    <Button variant="text" className="bouton-detail" onclick={showRiskDetail} startIcon={<LoupeIcon style={{ color: "black" }} />}>
+                                    <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
                                     </Button>
                                     </p>
                                 </Link>
