@@ -85,7 +85,7 @@ export default function DetailImmobilier() {
             opacity: "1",
           }}>
           <Link to="/territoire">
-            <CloseIcon fontSize="large"/>
+            <CloseIcon className="icon-close" fontSize="large"/>
           </Link>
             <ul style={{
             display: "inline",

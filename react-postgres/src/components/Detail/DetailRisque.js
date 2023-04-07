@@ -3,6 +3,8 @@ import "../../styles/Home.css";
 import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
 import PolarArea from "../Charts/PolarArea";
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from "react-router-dom";
 import store from "../../store";
 import "../../styles/Home.css";
 
@@ -64,6 +66,9 @@ export default function DetailImmobilier() {
             visibility: "visible",
             opacity: "1",
           }}>
+          <Link to="/territoire">
+            <CloseIcon className="icon-close" fontSize="large"/>
+          </Link>
             <ul style={{
             display: "inline",
           }}>

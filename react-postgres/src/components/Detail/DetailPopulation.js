@@ -3,6 +3,8 @@ import "../../styles/Home.css";
 import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
 import store from "../../store";
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from "react-router-dom";
 import "../../styles/Home.css";
 
 export default function DetailPopulation() {
@@ -67,6 +69,9 @@ export default function DetailPopulation() {
             visibility: "visible",
             opacity: "1",
           }}>
+          <Link to="/territoire">
+            <CloseIcon className="icon-close" fontSize="large"/>
+          </Link>
             <ul style={{
             display: "inline",
           }}>

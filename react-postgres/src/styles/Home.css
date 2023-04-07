@@ -223,3 +223,9 @@
   height: 80%;
   width: 80%;
 }
+
+.icon-close {
+  position:absolute;
+  right:10px;
+  top:10px;
+}
