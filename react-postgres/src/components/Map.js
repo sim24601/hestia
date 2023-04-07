@@ -40,8 +40,8 @@ function MapWrapper() {
     const leafIcon = L.Icon.extend({
         options: {
             iconSize: [20, 20],
-            iconAnchor: [15, 30],
-            popupAnchor: [0, -20],
+            iconAnchor: [5, 30],
+            popupAnchor: [25, -25],
         },
     });
 
@@ -136,7 +136,9 @@ function MapWrapper() {
                 params: urlgeoParams,
             })
             .then(function(response) {
-                let transacdata = response.data[0];
+                let arrData = response.data
+                arrData.forEach(function(element) {
+                let transacdata = element;
                 let transaccoord = [transacdata.lat, transacdata.lon];
                 let transacMarkerLayer = L.marker(transaccoord, {
                     icon: iconTransaction,
@@ -168,6 +170,7 @@ function MapWrapper() {
                         .on("mouseout", function(e) {
                             this.closePopup();
                         });
+                    })
             })
             .catch(function(error){
                     console.log(error);
