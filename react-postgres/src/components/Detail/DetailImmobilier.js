@@ -16,7 +16,6 @@ export default function DetailImmobilier() {
         labels: labelsType,
         datasets: [
           {
-            label: "Type de logement",
             backgroundColor: ["#a0d8e7","#00cdb1","#ffa641"],
             data: [datadb.nb_log_pr, datadb.nb_log_sec, datadb.nb_log_vac],
           },
@@ -25,11 +24,15 @@ export default function DetailImmobilier() {
 
     const optionstype = {
       plugins: {
-          legend: {
-              display: true,
-              position: 'bottom',
-          }
-      }
+        title: {
+          display: true,
+          text: "Type de logement",
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+        },
+      },
     };
 
     const labelsAge = ["Avant 1919", "1920-1944", "1945-1969", "1970-1989", "1990-2005", "2006+"];
@@ -43,18 +46,21 @@ export default function DetailImmobilier() {
           borderColor: "#ffc638",
           borderRadius : 4,
           maxBarThickness : 30,
-          data: [datadb.date_1919, datadb.date_1945, datadb.date_1970, datadb.date_1990, datadb.date_2005, datadb.date_2015],
+          data: [datadb.Date_1919, datadb.Date_1945, datadb.Date_1970, datadb.Date_1990, datadb.Date_2005, datadb.Date_2015],
         },
       ],
     };
     const optionsAge = {
       plugins: {
+        title: {
+          display: true,
+          text: "Date de consturction des batiments",
+        },
           legend: {
-              display: true,
-              position: 'bottom',
+              display: false,
           }
       }
-    }
+    };
 
     const labelsLogement = ["propriétaire","location","hlm","gratuit"]
     const dataLogement = {
@@ -69,13 +75,17 @@ export default function DetailImmobilier() {
     };
 
     const optionsLogement = {
-        plugins: {
-            legend: {
-                display: true,
-                position: 'bottom',
-            }
-        }
-      }
+      plugins: {
+        title: {
+          display: true,
+          text: "Situation immobilière des résidents",
+        },
+        legend: {
+          display: false,
+          position: "bottom",
+        },
+      },
+    };
 
     return (
         <div className="territoire-container">
@@ -90,9 +100,9 @@ export default function DetailImmobilier() {
             <ul style={{
             display: "inline",
           }}>
-              <PieChart donnee={dataType} largeur={25} hauteur={25} options={{optionstype}}/>
-              <BarChart donnee={dataAge} largeur={30} hauteur={35} options={{optionsAge}}/>
-              <BarChart donnee={dataLogement} largeur={30} hauteur={35} options={{optionsLogement}}/>
+              <PieChart donnee={dataType} largeur={25} hauteur={25} options={optionstype}/>
+              <BarChart donnee={dataAge} largeur={30} hauteur={35} options={optionsAge}/>
+              <BarChart donnee={dataLogement} largeur={30} hauteur={35} options={optionsLogement}/>
             </ul>
           </div>
         </div>

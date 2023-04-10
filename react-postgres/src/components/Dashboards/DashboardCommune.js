@@ -10,7 +10,7 @@ export default function DashboardCommune() {
         <div>
             <ul>
                 <p>{data.nom_commune}</p>
-                <p> nombre de vues wikipedia par année par habitant: {Math.round(100*data.vues/(8*data.population))/100}</p>
+                <p> Vues wikipedia annuelles pour un habitant: {Math.round(100*data.vues/(8*data.population))/100}</p>
             </ul>
         </div>
     );

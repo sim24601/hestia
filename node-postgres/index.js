@@ -18,7 +18,7 @@ app.get('/api/commune/', (req, res) => {
     requetes.getCommuneByCodinsee(codinsee)
     .then(response => {
       res.status(200).send(response);
-      // console.log(response)
+      console.log(response)
     })
     .catch(error => {
       res.status(500).send(error);
@@ -48,7 +48,7 @@ app.get('/api/commune/', (req, res) => {
     requetes.getCloseTransaction(lon, lat)
     .then(response => {
       res.status(200).send(response);
-      console.log(response)
+      //console.log(response)
     })
     .catch(error => {
       res.status(500).send(error);

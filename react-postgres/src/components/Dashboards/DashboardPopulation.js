@@ -1,18 +1,52 @@
 import React from "react";
 import "../../styles/Home.css";
 import store from "../../store";
+import BarChart from "../Charts/Barchart";
 
 export default function DashboardPopulation() {
     const datadb = store.getState().commune.properties;
+
+    const labelsAge = ["0-14", "15-29", "30-44", "45-59", "60-74", "75-89", "90+"];
+
+    const dataAge = {
+      labels: labelsAge,
+      datasets: [
+        { label: "nombre de résidents",
+          backgroundColor: "#ffc638",
+          borderColor: "#ffc638",
+          borderRadius : 4,
+          maxBarThickness : 30,
+          data: [datadb.Pop_14, datadb.Pop_29, datadb.Pop_44, datadb.Pop_59, datadb.Pop_74, datadb.Pop_89, datadb.Pop_100],
+        },
+      ],
+    };
+    const optionsAge = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Age des résidents",
+        },
+          legend: {
+              display: false,
+          }
+      }
+    };
+
+    const styleChart = {
+      margin: '-5',
+      padding: '-3',
+      position: 'absolute',
+      left:'0.7vw',
+      bottom:'3.5vw',
+      height: '10vw',
+      width:'25vw'};
 
     return (
         <div>
           <ul>
             <p>population : {datadb.population}</p>
             <p>revenu median : {datadb.revenu_median}</p>
-            <p>anncienneté moyenne dans la commune : {Math.floor(100*datadb.anciennete_pop/datadb.population)/100}</p>
-            <p>taux de réussite au bac : {Math.floor(100*datadb.taux_reussite_bac)/100}</p>
-            <p>taux de mention au bac : {Math.floor(100*datadb.taux_mention)/100}</p>
+            <p style={styleChart}><BarChart donnee={dataAge} largeur={36} hauteur={21} options={optionsAge}/></p>
           </ul>
         </div>
     );

@@ -5,6 +5,6 @@ import { PolarAreaController, ArcElement, RadialLinearScale, Chart } from "chart
 export default function BarChart(props) {
     Chart.register(PolarAreaController, ArcElement, RadialLinearScale);
     return(<div>
-        <PolarArea data={props.donnee} width={props.largeur} height={props.hauteur} options={{maintainAspectRatio: false}}/>
+        <PolarArea data={props.donnee} width={props.largeur} height={props.hauteur} options={props.options} />
     </div>)
 };

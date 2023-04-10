@@ -10,30 +10,28 @@ import "../../styles/Home.css";
 export default function DetailPopulation() {
     const datadb = store.getState().commune.properties;
 
-    const labelsAge = ["0-14", "15-29", "30-44", "45-59", "60-74", "75-89", "90+"];
+    const labelsTransport = ["marche", "velo", "moto", "auto", "transport"];
 
-    const dataAge = {
-      labels: labelsAge,
+    const dataTransport = {
+      labels: labelsTransport,
       datasets: [
-        {
-          label: "Population par âge",
-          backgroundColor: "#ffc638",
-          borderColor: "#ffc638",
+        { label: "nombre",
+          backgroundColor: ["#a0d8e7","#00cdb1","#ffa641", "#ff4848", "#ffc638"],
           borderRadius : 4,
           maxBarThickness : 30,
-          data: [datadb.pop_14, datadb.pop_29, datadb.pop_44, datadb.pop_59, datadb.pop_74, datadb.pop_89, datadb.pop_100],
+          data: [datadb.nb_tra_marche, datadb.nb_tra_velo, datadb.nb_tra_moto, datadb.nb_tra_auto, datadb.nb_tra_transp],
         },
       ],
     };
-    const optionsAge = {
-      interaction: {
-        // Overrides the global setting
-        mode: 'index'
-      },
+    const optionsTransport = {
       plugins: {
+        title: {
+          display: true,
+          text: "Mode de transports",
+        },
           legend: {
               display: true,
-              position: 'bottom',
+              position: "bottom",
           }
       }
     };
@@ -42,12 +40,23 @@ export default function DetailPopulation() {
     const dataAncien = {
       labels: labelsAncien,
       datasets: [
-        {
-          label: "Anciennete dans la commune",
+        { 
           backgroundColor: ["#a0d8e7","#00cdb1","#ffa641", "#ff4848"],
           data: [datadb.pop_log_2a, datadb.pop_log_4a, datadb.pop_log_9a, datadb.pop_log_10plus],
         },
       ],
+    };
+    const optionsAncien = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Durée de résidence dans la commune",
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+        },
+      },
     };
 
     const labelsFamille = ["celibataire","couple","famille","monoparentale"]
@@ -62,6 +71,19 @@ export default function DetailPopulation() {
       ],
     };
 
+    const optionsFamille = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Situation familiale des ménages",
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+        },
+      },
+    };
+
     return (
         <div className="territoire-container">
           <div id="detail-container" className="container" 
@@ -70,17 +92,14 @@ export default function DetailPopulation() {
             opacity: "1",
           }}>
           <Link to="/territoire">
-            <CloseIcon className="icon-close" fontSize="large"/>
+            <CloseIcon className="icon-close" fontSize="medium"/>
           </Link>
             <ul style={{
             display: "inline",
           }}>
-              <p>situation familale par ménage :</p>
-              <PieChart donnee={dataFamille} largeur={40} hauteur={40} />
-              <p>population par âges :</p>
-              <BarChart donnee={dataAge} largeur={30} hauteur={35} options={{optionsAge}}/>
-              <p>population par anciennete :</p>
-              <PieChart donnee={dataAncien} largeur={40} hauteur={40} />
+              <PieChart donnee={dataFamille} largeur={40} hauteur={40} options={optionsFamille}/>
+              <PieChart donnee={dataTransport} largeur={30} hauteur={35} options={optionsTransport}/>
+              <PieChart donnee={dataAncien} largeur={40} hauteur={40} options={optionsAncien}/>
             </ul>
           </div>
         </div>

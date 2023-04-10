@@ -26,12 +26,16 @@ export default function DetailImmobilier() {
         ],
       };
 
-    const optionstype = {
+    const optionsType = {
       plugins: {
-          legend: {
-              display: true,
-              position: 'bottom',
-          }
+        title: {
+          display: true,
+          text: "Carte des risques",
+        },
+        legend: {
+            display: true,
+            position: 'bottom',
+        }
       }
     };
 
@@ -52,6 +56,10 @@ export default function DetailImmobilier() {
     };
     const optionsEvent = {
       plugins: {
+          title: {
+            display: true,
+            text: "Nombre d'évènements climatiques depuis 2014",
+          },
           legend: {
               display: true,
               position: 'bottom',
@@ -72,8 +80,8 @@ export default function DetailImmobilier() {
             <ul style={{
             display: "inline",
           }}>
-              <PolarArea donnee={dataRisk} largeur={250} hauteur={250} />
-              <BarChart donnee={dataEvent} largeur={30} hauteur={35} options={{optionsEvent}}/>
+              <PolarArea donnee={dataRisk} largeur={250} hauteur={250} options={optionsType}/>
+              <BarChart donnee={dataEvent} largeur={30} hauteur={35} options={optionsEvent}/>
             </ul>
           </div>
         </div>
