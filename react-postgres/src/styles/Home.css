@@ -224,6 +224,14 @@
   width: 80%;
 }
 
+#Drisk-container {
+  position: absolute;
+  display: block;
+  left:9%;
+  height: 80%;
+  width: 80%;
+}
+
 .icon-close {
   position:absolute;
   right:5px;

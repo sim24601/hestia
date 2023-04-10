@@ -39,18 +39,18 @@ export default function DetailImmobilier() {
       }
     };
 
-    const labelsEvent = ["Tempetes", "Vents Violents", "Pluie forte"];
+    const labelsEvent = ["Inondations", "Tempête", "Sécheresse", "Submersion", "Glissement de terrain"];
 
     const dataEvent = {
       labels: labelsEvent,
       datasets: [
         {
-          label: "Evenements climatiques depuis 2014",
-          backgroundColor: "#ffc638",
+          label: "",
+          backgroundColor: ["#00cdb1","#ffa641","#ff4848", "#a0d8e7", "#ffc638"],
           borderColor: "#ffc638",
+          border:0,
           borderRadius : 4,
-          maxBarThickness : 30,
-          data: [datadb.tempetes, datadb.vents_violents, datadb.pluie_forte],
+          data: [datadb["Inondations.et.ou.Coulées.de.Boue"], datadb["Tempête"], datadb["Sécheresse"], datadb["Chocs.Mécaniques.liés.à.l.action.des.Vagues"], datadb["Glissement.de.Terrain"]],
         },
       ],
     };
@@ -58,7 +58,7 @@ export default function DetailImmobilier() {
       plugins: {
           title: {
             display: true,
-            text: "Nombre d'évènements climatiques depuis 2014",
+            text: "Nombres de Catastrophes climatiques depuis 1984",
           },
           legend: {
               display: true,
@@ -69,7 +69,7 @@ export default function DetailImmobilier() {
 
     return (
         <div className="territoire-container">
-          <div id="detail-container" className="container" 
+          <div id="Drisk-container" className="container" 
           style={{
             visibility: "visible",
             opacity: "1",
@@ -80,8 +80,7 @@ export default function DetailImmobilier() {
             <ul style={{
             display: "inline",
           }}>
-              <PolarArea donnee={dataRisk} largeur={250} hauteur={250} options={optionsType}/>
-              <BarChart donnee={dataEvent} largeur={30} hauteur={35} options={optionsEvent}/>
+              <BarChart donnee={dataEvent} largeur={130} hauteur={50} options={optionsEvent}/>
             </ul>
           </div>
         </div>
