@@ -10,9 +10,30 @@
 
 .image-bar {
     position: absolute;
-    left: 9%;
-    height: 60%;
-    width: 80%;
-    background-color: white;
+    top: 8%;
+    left: 22%;
+    width: 65%;
     border-radius: 5px;
+}
+
+.image-liste {
+  border-radius: 10px;
+}
+
+.detail-container {
+  position: absolute;
+  display: block;
+  left:9%;
+  height: 80%;
+  width: 80%;
+  background-color: white;
+  margin: 1%;
+  border-radius: 10px;
+  box-shadow: 1px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 1s linear, opacity 1s linear;
 }

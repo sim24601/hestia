@@ -3,7 +3,6 @@ import "../../styles/Home.css";
 import store from "../../store";
 import { commune, updateCommuneCodes } from "../../stores/Commune";
 import { useState } from "react";
-import PolarArea from "../Charts/PolarArea";
 import BarChart from "../Charts/Barchart";
 
 export default function DashboardRisk() {
