@@ -22,6 +22,10 @@ function Climat() {
             border: 'solid 1px black' ,
             transform: "scale3d(1.02, 1.02, 1.02)",
         },
+        "&:active": {
+            opacity: 2,
+            border: 'solid 1px yellow' ,
+        },
     }));
 
     const [isShow, setShow] = useState(true);
