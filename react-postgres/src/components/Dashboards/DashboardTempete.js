@@ -8,7 +8,7 @@ export default function DashboardTempete() {
         <div>
             <CloseIcon className="icon-close" fontSize="large"/>
             <ul>
-                <img style={{height: 340, width: 210}}src={carte}></img>
+                <img style={{height: "90%", width: "50%", left:2, position: "absolute"}}src={carte}></img>
             </ul>
         </div>
     );

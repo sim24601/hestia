@@ -16,6 +16,17 @@
     border-radius: 5px;
 }
 
+.image-carrousel {
+  margin: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 0%;
+  left: 1%;
+  width: 20%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
 .image-liste {
   border-radius: 10px;
 }
@@ -23,9 +34,10 @@
 .detail-container {
   position: absolute;
   display: block;
-  left:9%;
+  top: 0%;
+  left:25%;
   height: 80%;
-  width: 80%;
+  width: 72%;
   background-color: white;
   margin: 1%;
   border-radius: 10px;
