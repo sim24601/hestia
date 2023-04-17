@@ -1,0 +1,11 @@
+.carte {
+    height: 90%;
+    width: 50%; 
+    left:2%;
+    position: absolute;
+    border: solid 1px black;
+}
+
+.texte {
+    margin-left: 50%;
+}

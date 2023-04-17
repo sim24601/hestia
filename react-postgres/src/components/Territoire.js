@@ -17,7 +17,6 @@ import Snackbar from "@mui/material/Snackbar";
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import LoupeIcon from '@mui/icons-material/Loupe';
-import DetailImmobilier from "./Detail/DetailImmobilier";
 
 const { api_url } = require("../settings");
 
