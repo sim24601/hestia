@@ -15,6 +15,7 @@ const config = {
             "#ffc638", // jaune
             "#ffa641", // orange
             "#a0d8e7", // bleu clair
+            "ffdede", // rose clair
         ],
         borderColor: [
             "rgb(54, 79, 107)",

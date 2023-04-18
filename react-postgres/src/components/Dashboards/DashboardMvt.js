@@ -8,13 +8,13 @@ export default function DashboardMvt() {
     const datadb = store.getState().commune.properties;
     const nb_catnat = datadb['Mouvement.de.Terrain'];
     const echelleCout = [0,1250,3750,7500,15000,30000];
-    const coutMoyen = echelleCout[(datadb.ctmvt+1)];
+    const coutMoyen = echelleCout[datadb.ctmvt];
     const dureeResidence = datadb.anciennete_prop/datadb.nb_pop_prop;
     const dureeResidenceMois = Math.floor(12*(dureeResidence - Math.floor(dureeResidence)))
     const coutComplet = (coutMoyen+1520)*nb_catnat*dureeResidence/40
     const coutCompletRCP85 = 1.23*(coutMoyen+1520)*nb_catnat*dureeResidence/40
 
-    const labelsCout = ["Cout Moyen", "Cout Complet", "Cout Complet RCP8.5"];
+    const labelsCout = ["Coût Moyen", "Coût Complet", "Coût Complet RCP8.5"];
 
     const dataCout = {
         labels: labelsCout,
@@ -44,7 +44,7 @@ export default function DashboardMvt() {
             <img className="carte" src={carte}></img>
             {datadb != "" && (<div>
             <ul><p className="texte"> Commune : {datadb.nom_commune} </p>
-            <p className="texte"> nombre d'occurences depuis 1984 : {nb_catnat} </p>
+            <p className="texte"> nombre d'occurences depuis 1982 : {nb_catnat} </p>
             <p className="texte"> coût moyen d'un sinistre : {coutMoyen} € + 1520 € de franchise </p>
             <p className="texte"> durée moyenne de résidence : {Math.floor(dureeResidence)} années {dureeResidenceMois} mois</p>
             <p className="texte"> coût complet du risque : {Math.floor(coutComplet*100)/100} € </p>

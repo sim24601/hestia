@@ -10,3 +10,18 @@
     margin-left: 54%;
     text-align: left;
 }
+
+.schema {
+    height: 40%;
+    width: 50%; 
+    left:2%;
+    position: absolute;
+}
+
+.schema1 {
+    height: 40%;
+    width: 50%; 
+    top: 45%;
+    left:2%;
+    position: absolute;
+}

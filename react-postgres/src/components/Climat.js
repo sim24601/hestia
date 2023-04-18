@@ -8,6 +8,8 @@ import DashboardMvt from "./Dashboards/DashboardMvt";
 import DashboardInondation from "./Dashboards/DashboardInondation";
 import DashboardSecheresse from "./Dashboards/DashboardSecheresse";
 import DashboardSubmersion from "./Dashboards/DashboardSubmersion";
+import DashboardLocalRisk from "./Dashboards/DashboardLocalRisk";
+import store from "../store";
 import storm from '../img/tuile/tempete.jpg';
 import flood from '../img/tuile/inondation.jpg';
 import submersion from '../img/tuile/submersion.jpg';
@@ -16,9 +18,11 @@ import grele from '../img/tuile/grele.jpg';
 import secheresse from '../img/tuile/secheresse.jpg';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import GiteIcon from '@mui/icons-material/Gite';
+import Button from '@mui/material/Button';
 
 function Climat() {
-
+    const datadb = store.getState().commune.properties;
     const ImageListItemWithStyle = styled(ImageListItem)(({ theme }) => ({
         transition: "transform 0.15s ease-in-out",
         "&:hover": {
@@ -101,6 +105,7 @@ function Climat() {
                     </ImageListItemWithStyle>
                     ))}
                 </ImageList>
+                {datadb != "" && (<Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>setDash("commune")}>Ma Commune</Button>)}
             </div>
             <div>
                 {dash != 'start' && (<div className="detail-container">
@@ -110,6 +115,7 @@ function Climat() {
                     {dash == 'secheresse' && (<DashboardSecheresse />)}
                     {dash == 'mvt' && (<DashboardMvt />)}
                     {dash == 'submersion' && (<DashboardSubmersion />)}
+                    {dash == 'commune' && (<DashboardLocalRisk />)}
                 </div>)}
             </div>
         </div>
