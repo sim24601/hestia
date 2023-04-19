@@ -1,8 +1,15 @@
 import React from "react";
 import "../../styles/CarteClimat.css";
 import store from "../../store";
-import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 
 export default function DashboardLocalRisk() {
     const datadb = store.getState().commune.properties;
@@ -50,11 +57,11 @@ export default function DashboardLocalRisk() {
         plugins: {
           title: {
             display: true,
-            text: "Coût du risque",
+            text: "Repartition du coût des sinistres",
           },
           legend: {
             display: true,
-            position: "bottom",
+            position: "right",
           },
         },
       };
@@ -75,32 +82,97 @@ export default function DashboardLocalRisk() {
           plugins: {
             title: {
               display: true,
-              text: "Coût du risque en 2050 (scénario RCP8.5 à +2 degrés Celsius)",
+              text: "Coût du risque en 2050",
             },
             legend: {
               display: true,
-              position: "bottom",
+              position: "right",
             },
           },
         };
     return(
         <div>
+            <p className="graph-container">
             <div className="schema">
-                <PieChart donnee={dataCout} largeur={10} hauteur={10} options={optionsCout}/>
+                <PieChart donnee={dataCout} largeur={90} hauteur={35} options={optionsCout}/>
             </div>
             {/* <div className="schema1">
-                <PieChart donnee={dataCoutRCP} largeur={10} hauteur={10} options={optionsCoutRCP}/>
+                <PieChart donnee={dataCoutRCP} largeur={90} hauteur={35} options={optionsCoutRCP}/>
             </div> */}
+            </p>
             <ul>
-                <p className="texte"> Commune : {datadb.nom_commune} </p>
-                <p className="texte"> durée moyenne de résidence : {Math.floor(dureeResidence)} années {dureeResidenceMois} mois</p>
-                <p className="texte"> Cout total du risque : {Math.floor(coutTotal*100)/100} € </p>
-                <p className="texte"> Cout total du risque mensuel : {Math.floor(100*coutTotal/(dureeResidence*12+ dureeResidenceMois))/100} € </p>
-                <p className="texte"> Cout total du risque annuel: {Math.floor(100*coutTotal/dureeResidence)/100} € </p>
-                <p className="texte"> Cout total du risque RCP 8.5 : {Math.floor(coutTotalRCP85*100)/100} € </p>   
-                <p className="texte"> Cout total du risque RCP 8.5 mensuel : {Math.floor(100*coutTotalRCP85/(dureeResidence*12+ dureeResidenceMois)/100)} € </p>
-                <p className="texte"> Cout total du risque RCP 8.5 annuel: {Math.floor(100*coutTotalRCP85/dureeResidence)/100} € </p>
+                <p className="localRisqueDescription"> Scénariis sur la commune de {datadb.nom_commune} </p>
+                <p className="localRisqueDescription"> Durée moyenne de résidence : {Math.floor(dureeResidence)} années {dureeResidenceMois} mois</p>
             </ul>
+            <br />
+            <TableContainer className="localRisqueDescription" sx={{width: "35vw"}} component={Paper}>
+            <Table aria-label="couts actuels" size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Situation actuelle</TableCell>
+                  <TableCell align="right">Coût en €</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                    Coût mensuel
+                    </TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotal/(dureeResidence*12+ dureeResidenceMois))/100)}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                    Coût annuel
+                    </TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotal/dureeResidence)/100)} €</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                    Coût sur la durée de résidence
+                    </TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(coutTotal*100)/100)} €</TableCell>
+                  </TableRow>
+              </TableBody>
+          </Table>
+        </TableContainer>
+        <br />
+        <br />
+        <TableContainer className="localRisqueDescription" sx={{width: "35vw" }} component={Paper}>
+            <Table aria-label="simple table" size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>En 2050, scénario de +2°C</TableCell>
+                  <TableCell align="right">Coût en €</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                    Coût mensuel
+                    </TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotalRCP85/(dureeResidence*12+ dureeResidenceMois))/100)}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                    Coût annuel
+                    </TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotalRCP85/dureeResidence)/100)} €</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                    Coût sur la durée de résidence
+                    </TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(coutTotalRCP85*100)/100)} €</TableCell>
+                  </TableRow>
+              </TableBody>
+          </Table>
+        </TableContainer>
         </div>
     )
 }

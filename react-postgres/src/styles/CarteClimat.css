@@ -11,17 +11,31 @@
     text-align: left;
 }
 
+.localRisqueDescription {
+    margin-left: 50%;
+    text-align: left;
+}
+
+.graph-container {
+    position: absolute;
+    left: 1vw;
+    top: 0vw;
+    height: 35vw;
+    width: 35vw;
+}
+
 .schema {
-    height: 40%;
-    width: 50%; 
+    height: 45%;
+    width: 95%; 
+    top: 0%;
     left:2%;
     position: absolute;
 }
 
 .schema1 {
-    height: 40%;
-    width: 50%; 
-    top: 45%;
+    height: 45%;
+    width: 95%; 
+    top: 48%;
     left:2%;
     position: absolute;
 }
