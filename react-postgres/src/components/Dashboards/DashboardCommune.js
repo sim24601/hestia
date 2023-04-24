@@ -16,7 +16,7 @@ export default function DashboardCommune() {
           backgroundColor: ["#a0d8e7","#00cdb1","#ffa641", "#ff4848", "#ffc638"],
           borderRadius : 4,
           maxBarThickness : 30,
-          data: [datadb.Services, datadb.Commerces, datadb.Enseignement, datadb.Sante, datadb.Transports],
+          data: [datadb.services, datadb.commerces, datadb.enseignement, datadb.sante, datadb.transports],
         },
       ],
     };

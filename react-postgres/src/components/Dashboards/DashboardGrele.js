@@ -6,7 +6,7 @@ import BarChart from "../Charts/Barchart";
 
 export default function DashboardGrele() {
     const datadb = store.getState().commune.properties;
-    const nb_catnat = datadb['Grêle'];
+    const nb_catnat = datadb['grêle'];
     const coutMoyen = datadb.cttgn;
     const dureeResidence = datadb.anciennete_prop/datadb.nb_pop_prop;
     const dureeResidenceMois = Math.floor(12*(dureeResidence - Math.floor(dureeResidence)))

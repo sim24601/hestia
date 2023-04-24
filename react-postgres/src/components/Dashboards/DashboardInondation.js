@@ -6,7 +6,7 @@ import BarChart from "../Charts/Barchart";
 
 export default function DashboardInondation() {
     const datadb = store.getState().commune.properties;
-    const nb_catnat = datadb['Inondations.et.ou.Coulées.de.Boue'];
+    const nb_catnat = datadb['inondations.et.ou.coulées.de.boue'];
     const echelleCout = [0,1250,3750,7500,15000,30000];
     const coutMoyen = echelleCout[datadb.ctinon];
     const dureeResidence = datadb.anciennete_prop/datadb.nb_pop_prop;

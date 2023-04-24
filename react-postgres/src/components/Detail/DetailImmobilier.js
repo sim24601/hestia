@@ -46,7 +46,7 @@ export default function DetailImmobilier() {
           borderColor: "#ffc638",
           borderRadius : 4,
           maxBarThickness : 30,
-          data: [datadb.Date_1919, datadb.Date_1945, datadb.Date_1970, datadb.Date_1990, datadb.Date_2005, datadb.Date_2015],
+          data: [datadb.date_1919, datadb.date_1945, datadb.date_1970, datadb.date_1990, datadb.date_2005, datadb.date_2015],
         },
       ],
     };

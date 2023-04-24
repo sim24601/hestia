@@ -6,7 +6,7 @@ import BarChart from "../Charts/Barchart";
 
 export default function DashboardSubmersion() {
     const datadb = store.getState().commune.properties;
-    const nb_catnat = datadb['Chocs.Mécaniques.liés.à.l.action.des.Vagues'];
+    const nb_catnat = datadb['chocs.mécaniques.liés.à.l.action.des.vagues'];
     const echelleCout = [0,1250,3750,7500,15000,30000];
     const coutMoyen = echelleCout[datadb.ctinon];
     const dureeResidence = datadb.anciennete_prop/datadb.nb_pop_prop;

@@ -16,7 +16,7 @@ export default function DashboardPopulation() {
           borderColor: "#ffc638",
           borderRadius : 4,
           maxBarThickness : 30,
-          data: [datadb.Pop_14, datadb.Pop_29, datadb.Pop_44, datadb.Pop_59, datadb.Pop_74, datadb.Pop_89, datadb.Pop_100],
+          data: [datadb.pop_14, datadb.pop_29, datadb.pop_44, datadb.pop_59, datadb.pop_74, datadb.pop_89, datadb.pop_100],
         },
       ],
     };

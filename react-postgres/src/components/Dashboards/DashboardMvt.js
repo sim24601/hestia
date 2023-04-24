@@ -6,7 +6,7 @@ import BarChart from "../Charts/Barchart";
 
 export default function DashboardMvt() {
     const datadb = store.getState().commune.properties;
-    const nb_catnat = datadb['Mouvement.de.Terrain'];
+    const nb_catnat = datadb['mouvement.de.terrain'];
     const echelleCout = [0,1250,3750,7500,15000,30000];
     const coutMoyen = echelleCout[datadb.ctmvt];
     const dureeResidence = datadb.anciennete_prop/datadb.nb_pop_prop;

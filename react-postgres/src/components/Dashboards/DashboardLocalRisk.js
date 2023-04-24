@@ -13,12 +13,12 @@ import Paper from '@mui/material/Paper';
 
 export default function DashboardLocalRisk() {
     const datadb = store.getState().commune.properties;
-    const nb_inondation = datadb['Inondations.et.ou.Coulées.de.Boue'];
-    const nb_submersion = datadb['Chocs.Mécaniques.liés.à.l.action.des.Vagues'];
-    const nb_tempete = datadb['Tempête'];
-    const nb_grele = datadb['Grêle'];
-    const nb_mvt = datadb['Mouvement.de.Terrain'];
-    const nb_secheresse = datadb['Sécheresse'];
+    const nb_inondation = datadb['inondations.et.ou.coulées.de.boue'];
+    const nb_submersion = datadb['chocs.mécaniques.liés.à.l.action.des.vagues'];
+    const nb_tempete = datadb['tempête'];
+    const nb_grele = datadb['grêle'];
+    const nb_mvt = datadb['mouvement.de.terrain'];
+    const nb_secheresse = datadb['sécheresse'];
     const coutMoyenTG = datadb.cttgn;
     const echelleCout = [0,1250,3750,7500,15000,30000];
     const coutMoyenIS = echelleCout[datadb.ctinon];
@@ -119,7 +119,7 @@ export default function DashboardLocalRisk() {
                     <TableCell component="th" scope="row">
                     Coût mensuel
                     </TableCell>
-                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotal/(dureeResidence*12+ dureeResidenceMois))/100)}</TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotal/(dureeResidence*12))/100)} €</TableCell>
                   </TableRow>
                   <TableRow
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -154,7 +154,7 @@ export default function DashboardLocalRisk() {
                     <TableCell component="th" scope="row">
                     Coût mensuel
                     </TableCell>
-                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotalRCP85/(dureeResidence*12+ dureeResidenceMois))/100)}</TableCell>
+                    <TableCell align="right">{Intl.NumberFormat('fr-FR').format(Math.floor(100*coutTotalRCP85/(dureeResidence*12))/100)} €</TableCell>
                   </TableRow>
                   <TableRow
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

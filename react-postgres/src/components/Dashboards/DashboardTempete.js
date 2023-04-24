@@ -6,7 +6,7 @@ import BarChart from "../Charts/Barchart";
 
 export default function DashboardTempete() {
     const datadb = store.getState().commune.properties;
-    const nb_catnat = datadb['Tempête'];
+    const nb_catnat = datadb['tempête'];
     const coutMoyen = datadb.cttgn;
     const dureeResidence = datadb.anciennete_prop/datadb.nb_pop_prop;
     const dureeResidenceMois = Math.floor(12*(dureeResidence - Math.floor(dureeResidence)))
