@@ -8,7 +8,6 @@ import BarChart from "../Charts/Barchart";
 
 export default function DashboardImmo() {
     const data = store.getState().commune.properties;
-
     const labelsClasse = ["appartement","maison"]
     const dataClasse = {
       labels: labelsClasse,

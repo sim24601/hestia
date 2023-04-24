@@ -6,9 +6,28 @@ import PieChart from "../Charts/Piechart";
 import CloseIcon from '@mui/icons-material/Close';
 import store from "../../store";
 import "../../styles/Home.css";
+import axios from "axios";
+const { api_url } = require("../../settings");
 
 export default function DetailImmobilier() {
     const datadb = store.getState().commune.properties;
+
+    let url = api_url + "/api/histodvf/?codinsee=" + datadb.codinsee;
+    axios
+      .get(url, {
+        params: {
+          geojson: false,
+        },
+      })
+      .then(function(response) {
+        if (response.status === 200) {
+            const timeprice = response.data;
+            console.log('SUCCES : requete price time');
+        }
+    })
+    .catch(function(error) {
+        console.log('ECHEC : Time price')
+    });
 
     const labelsType = ["principal", "secondaire", "vacant"];
 

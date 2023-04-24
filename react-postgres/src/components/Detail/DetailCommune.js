@@ -13,11 +13,11 @@ export default function DetailCommune() {
     const dataSecurite = {
         labels: labelsSecurite,
         datasets: [
-          { label: "nombre par habitant",
+          { label: "pourcentage par habitant / logement",
             backgroundColor: ["#ffa641", "#ff4848", "#ffc638"],
             borderRadius : 4,
             maxBarThickness : 30,
-            data: [datadb.vols/7, datadb.violences/7, datadb.cambriolages/7],
+            data: [100*datadb.vols/(datadb.population*7), 100*datadb.violences/(datadb.population*7), 100*datadb.cambriolages/(datadb.nb_log*7)],
           },
         ],
     };
@@ -26,7 +26,7 @@ export default function DetailCommune() {
             plugins: {
               title: {
                 display: true,
-                text: "Nombre de faits par an",
+                text: "Pourcentage de faits par habitant par an",
               },
                 legend: {
                     display: false,

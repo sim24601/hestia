@@ -8,29 +8,29 @@ import { Link } from "react-router-dom";
 import store from "../../store";
 import "../../styles/Home.css";
 
-export default function DetailImmobilier() {
+export default function DetailClimat() {
     const datadb = store.getState().commune.properties;
 
-    const labelsRisk = ["submersion", "debordement", "argile"];
+    const labelsTemperature = ["min", "mediane", "max"];
 
-    const dataRisk = {
-        labels: labelsRisk,
+    const dataTemperature = {
+        labels: labelsTemperature,
         datasets: [
           {
-            label: "Carte des risques",
+            label: "Temperatures",
             backgroundColor: ["#a0d8e7","#00cdb1","#ffa641"],
             borderColor: "grey",
             borderWidth:0,
-            data: [Math.floor(datadb.submersion*10000)/100, Math.floor(datadb.debordement*10000)/100, Math.floor(datadb.argile*100/3)],
+            data: [datadb.temperature_min, datadb.temperature_mediane, datadb.temperature_max],
           },
         ],
       };
 
-    const optionsType = {
+    const optionsTemperature = {
       plugins: {
         title: {
           display: true,
-          text: "Carte des risques",
+          text: "Temperatures depuis 2014",
         },
         legend: {
             display: true,
@@ -39,10 +39,10 @@ export default function DetailImmobilier() {
       }
     };
 
-    const labelsEvent = ["Inondations", "Tempête", "Sécheresse", "Submersion", "Glissement de terrain"];
+    const labelsMeteo = ["tempêtes", "vents violents", "pluie forte"];
 
-    const dataEvent = {
-      labels: labelsEvent,
+    const dataMeteo = {
+      labels: labelsMeteo,
       datasets: [
         {
           label: "",
@@ -50,15 +50,15 @@ export default function DetailImmobilier() {
           borderColor: "#ffc638",
           border:0,
           borderRadius : 4,
-          data: [datadb["Inondations.et.ou.Coulées.de.Boue"], datadb["Tempête"], datadb["Sécheresse"], datadb["Chocs.Mécaniques.liés.à.l.action.des.Vagues"], datadb["Glissement.de.Terrain"]],
+          data: [datadb.tempetes, datadb.vents_violents, datadb.pluie_forte],
         },
       ],
     };
-    const optionsEvent = {
+    const optionsMeteo = {
       plugins: {
           title: {
             display: true,
-            text: "Nombres de Catastrophes climatiques depuis 1984",
+            text: "Nombres d'évènements depuis 2014'",
           },
           legend: {
               display: true,
@@ -69,7 +69,7 @@ export default function DetailImmobilier() {
 
     return (
         <div className="territoire-container">
-          <div id="Drisk-container" className="container" 
+          <div id="detail-container" className="container" 
           style={{
             visibility: "visible",
             opacity: "1",
@@ -80,7 +80,9 @@ export default function DetailImmobilier() {
             <ul style={{
             display: "inline",
           }}>
-              <BarChart donnee={dataEvent} largeur={130} hauteur={50} options={optionsEvent}/>
+              
+              <BarChart donnee={dataMeteo} largeur={30} hauteur={35} options={optionsMeteo}/>
+              <BarChart donnee={dataTemperature} largeur={30} hauteur={35} options={optionsTemperature}/>
             </ul>
           </div>
         </div>

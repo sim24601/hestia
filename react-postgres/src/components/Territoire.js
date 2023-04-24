@@ -8,7 +8,7 @@ import { updateCommuneCodes } from "../stores/Commune";
 import { updateMapLoad } from "../stores/Map";
 import DashboardCommune from "./Dashboards/DashboardCommune";
 import DashboardPopulation from "./Dashboards/DashboardPopulation";
-import DashboardRisk from "./Dashboards/DashboardRisk";
+import DashboardClimat from "./Dashboards/DashboardClimat";
 import DashboardImmo from "./Dashboards/DashboardImmo";
 import store from "../store";
 import Alert from "@mui/material/Alert";
@@ -180,13 +180,13 @@ function Territoire() {
                             <div className="icon-label-container">
                                 <p className="icon-container icon-risk-container"></p>
                                 <Link className="lien-detail" to="/risque">
-                                    <p className="label-container">Risques
+                                    <p className="label-container">Climat
                                     <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
                                     </Button>
                                     </p>
                                 </Link>
                             </div>
-                            <DashboardRisk />
+                            <DashboardClimat />
                         </div>
                         <div
                             id="immo-container"

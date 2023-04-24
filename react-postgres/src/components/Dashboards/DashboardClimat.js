@@ -5,7 +5,7 @@ import { commune, updateCommuneCodes } from "../../stores/Commune";
 import { useState } from "react";
 import BarChart from "../Charts/Barchart";
 
-export default function DashboardRisk() {
+export default function DashboardClimat() {
     const datadb = store.getState().commune.properties;
 
     const labelsRisk = ["submersion", "debordement", "argile"];
