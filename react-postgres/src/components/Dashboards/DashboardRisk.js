@@ -47,8 +47,8 @@ export default function DashboardRisk() {
     return (
         <div>
             <ul>
-            <p>Part incendiée depuis 2014 : {datadb.incendies}</p>
-            <p>taux d'ensoleillement : {Math.floor(datadb.ensoleillement*100)/100} %</p>
+            <p>Nombre d'incendies depuis 2014 : {datadb.nb_incendie}</p>
+            <p>Nombre de canicules depuis 2014 (jour/nuit) : {datadb.canicule}</p>
             <p style={styleChart}><BarChart donnee={dataRisk} largeur={45} hauteur={25} options={optionsRisk}/></p>
             </ul>
         </div>

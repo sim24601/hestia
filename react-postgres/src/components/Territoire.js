@@ -141,7 +141,12 @@ function Territoire() {
                         >
                             <div className="icon-label-container">
                                 <p className="icon-container icon-commune-container"></p>
-                                <p className="label-container">Commune</p>
+                                <Link className="lien-detail" to="/commune">
+                                <p className="label-container">Commune
+                                    <Button variant="text" className="bouton-detail" startIcon={<LoupeIcon style={{ color: "black" }} />}>
+                                    </Button>
+                                </p>
+                                </Link>
                             </div>
                             <DashboardCommune />
                         </div>
