@@ -131,7 +131,6 @@ function MapWrapper() {
             lat: geocoderCoordinates[0],
             lon: geocoderCoordinates[1],
         };
-        console.log('appel geo');
         axios.get(urlgeo, {
                 params: urlgeoParams,
             })

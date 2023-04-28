@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState, useRef }  from "react";
 import { Link } from "react-router-dom";
+import Line from "../Charts/Line";
 import "../../styles/Home.css";
 import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
@@ -10,24 +11,59 @@ import axios from "axios";
 const { api_url } = require("../../settings");
 
 export default function DetailImmobilier() {
-    const datadb = store.getState().commune.properties;
+  const datadb = store.getState().commune.properties;
+  const url = api_url + "/api/histodvf/?codinsee=" + datadb.codinsee;
+  const [histo, setHisto] = useState(null);
+  const dataHisto = useRef(null);
+  const optionsHisto = useRef(null);
 
-    let url = api_url + "/api/histodvf/?codinsee=" + datadb.codinsee;
-    axios
-      .get(url, {
-        params: {
-          geojson: false,
-        },
-      })
-      .then(function(response) {
-        if (response.status === 200) {
-            const timeprice = response.data;
-            console.log('SUCCES : requete price time');
-        }
-    })
-    .catch(function(error) {
-        console.log('ECHEC : Time price')
-    });
+  async function getHistoImmo() {
+    const response = await axios.get(url);
+    if (response.status === 200) {
+      console.log('SUCCESS 1 ', response)
+      let close = response.data;
+      return close;
+    }
+  };
+
+  useEffect(() => {
+
+    let subscribe = true;
+    async function fetch() {
+      let resultats = await getHistoImmo();
+      if (subscribe) {
+        setHisto(resultats);
+      }
+      if (histo != null) {
+        const labelsHisto = histo.map(row => row.annee_mutation);
+        dataHisto.current = {
+          labels: labelsHisto,
+          datasets: [
+              {
+                data: histo.map(row => row.round)
+              },
+            ],
+          };
+          optionsHisto.current = {
+            plugins: {
+              title: {
+                display: true,
+                text: "Evolution Logement",
+              },
+              legend: {
+                display: true,
+                position: "bottom",
+              },
+            },
+          };
+        } 
+    }
+    
+    fetch();
+    return () => subscribe = false;
+  }, [histo]);
+
+    console.log('SUCCESS 2 ', histo);
 
     const labelsType = ["principal", "secondaire", "vacant"];
 
@@ -119,8 +155,9 @@ export default function DetailImmobilier() {
             <ul style={{
             display: "inline",
           }}>
-              <PieChart donnee={dataType} largeur={25} hauteur={25} options={optionstype}/>
-              <BarChart donnee={dataAge} largeur={30} hauteur={35} options={optionsAge}/>
+              <PieChart donnee={dataType} largeur={30} hauteur={35} options={optionstype}/>
+              { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={35} options={optionsHisto.current}/> }
+              {/* <BarChart donnee={dataAge} largeur={30} hauteur={35} options={optionsAge}/> */}
               <BarChart donnee={dataLogement} largeur={30} hauteur={35} options={optionsLogement}/>
             </ul>
           </div>
