@@ -85,6 +85,19 @@ app.get('/api/commune/', (req, res) => {
     })
   })
 
+  app.get('/api/securite/', (req, res) => {
+    const codinsee = req.query.codinsee;
+    requetes.getSecuriteByCodinsee(codinsee)
+    .then(response => {
+      res.status(200).send(response);
+      console.log(response)
+    })
+    .catch(error => {
+      res.status(500).send(error);
+      console.log(error)
+    })
+  })
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })

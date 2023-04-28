@@ -1,14 +1,81 @@
-import React from "react";
+import React, { useEffect, useState, useRef }  from "react";
 import { Link } from "react-router-dom";
-import "../../styles/Home.css";
 import BarChart from "../Charts/Barchart";
-import PieChart from "../Charts/Piechart";
 import CloseIcon from '@mui/icons-material/Close';
 import store from "../../store";
+import Line from "../Charts/Line";
 import "../../styles/Home.css";
+import axios from "axios";
+const { api_url } = require("../../settings");
 
 export default function DetailCommune() {
     const datadb = store.getState().commune.properties;
+
+    const url = api_url + "/api/securite/?codinsee=" + datadb.codinsee;
+    const [histo, setHisto] = useState(null);
+    const dataHisto = useRef(null);
+    const optionsHisto = useRef(null);
+    const [subscribe, setSubscribe] = useState(true);
+  
+    async function getHistoSecu() {
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        let close = response.data;
+        return close;
+      }
+    };
+  
+    useEffect(() => {
+      async function fetch() {
+        let resultats = await getHistoSecu();
+        if (subscribe) {
+          setHisto(resultats);
+        }
+        if (histo != null) {
+          setSubscribe(false);
+          const labelsHisto = histo.map(row => row.annee);
+          dataHisto.current = {
+            labels: labelsHisto,
+            datasets: [
+              {fill: false,
+                label: 'vols',
+                borderColor: '#ff4848',
+                tension: 0.1,
+                data: histo.map(row => row.nb_vols)
+              },
+              {fill: false,
+                label: 'violences',
+                borderColor: '#00cdb1',
+                tension: 0.1,
+                data: histo.map(row => row.nb_violences)
+              },
+              {fill: false,
+                label: 'cambriolages',
+                borderColor: '#ffc638',
+                tension: 0.1,
+                data: histo.map(row => row.nb_cambriolages)
+              },
+              ],
+            };
+            optionsHisto.current = {
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Evolution des faits",
+                },
+                legend: {
+                  display: true,
+                  position: "bottom",
+                },
+              },
+            };
+          } 
+      }
+      
+      fetch();
+    }, [histo]);
+
+
     const labelsSecurite= ["Vols", "Violences", "Cambriolages"];
     const dataSecurite = {
         labels: labelsSecurite,
@@ -97,13 +164,10 @@ export default function DetailCommune() {
           <Link to="/territoire">
             <CloseIcon className="icon-close" fontSize="large"/>
           </Link>
-            <ul style={{
-            display: "inline",
-          }}>
-            <BarChart donnee={dataActivite} largeur={30} hauteur={35} options={optionsActivite}/>
+            { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={40} options={optionsHisto.current}/> }
             <BarChart donnee={dataSecurite} largeur={30} hauteur={35} options={optionsSecurite}/>
+            <BarChart donnee={dataActivite} largeur={30} hauteur={35} options={optionsActivite}/>
             <BarChart donnee={dataDistance} largeur={30} hauteur={35} options={optionsDistance}/>
-            </ul>
           </div>
         </div>
     );

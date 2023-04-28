@@ -10,6 +10,32 @@ import "../../styles/Home.css";
 export default function DetailPopulation() {
     const datadb = store.getState().commune.properties;
 
+    const labelsMobilite = ["local", "commune", "departement", "region", "national", "international"];
+
+    const dataMobilite = {
+      labels: labelsMobilite,
+      datasets: [
+        { label: "nombre",
+          backgroundColor: "#ffc638",
+          borderColor: "#ffc638",
+          borderRadius : 4,
+          maxBarThickness : 30,
+          data: [datadb.nb_tra_loc, datadb.nb_tra_com, datadb.nb_tra_dep, datadb.nb_tra_reg, datadb.nb_tra_nat, datadb.nb_tra_int],
+        },
+      ],
+    };
+    const optionsMobilite = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Lieu de Travail",
+        },
+          legend: {
+              display: false,
+          }
+      }
+    };
+
     const labelsTransport = ["marche", "velo", "moto", "auto", "transport"];
 
     const dataTransport = {
@@ -98,6 +124,7 @@ export default function DetailPopulation() {
             display: "inline",
           }}>
               <PieChart donnee={dataFamille} largeur={40} hauteur={40} options={optionsFamille}/>
+              <BarChart donnee={dataMobilite} largeur={30} hauteur={35} options={optionsMobilite}/>
               <PieChart donnee={dataTransport} largeur={30} hauteur={35} options={optionsTransport}/>
               <PieChart donnee={dataAncien} largeur={40} hauteur={40} options={optionsAncien}/>
             </ul>

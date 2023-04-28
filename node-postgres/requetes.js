@@ -27,7 +27,8 @@ function getCommuneByCodinsee(codinsee) {
 function getPrixByCodinsee(codinsee) {
   return new Promise(function(resolve, reject) {
       console.log('select annee_mutation, round(avg(prix_brut/NULLIF(taille_bati,0)),2) from carte.dvf where codinsee =\''+codinsee+'\' group by annee_mutation');
-      pool.query('select annee_mutation, round(avg(prix_brut/NULLIF(taille_bati,0)),2) from carte.dvf where codinsee =\''+codinsee+'\' group by annee_mutation', (error, results) => {
+      pool.query('select annee_mutation, round(avg(prix_brut/NULLIF(taille_bati,0)),2) ' + 
+      'from carte.dvf where codinsee =\''+codinsee+'\' group by annee_mutation', (error, results) => {
       if (error) {
           reject(error)
     }
@@ -65,9 +66,27 @@ function getMeteoByCoord(lon,lat) {
 }) 
 }
 
+function getSecuriteByCodinsee(codinsee) {
+  return new Promise(function(resolve, reject) {
+      pool.query('select annee, ' +
+      'SUM(case when classe in (\'Coups et blessures volontaires\',\'Coups et blessures volontaires intrafamiliaux\', \'Destructions et dégradations volontaires\', \'Violences sexuelles\', \'Autres coups et blessures volontaires\') then faits else 0 end) as nb_violences, '+
+      'SUM(case when classe in (\'Vols avec armes\',\'Vols de véhicules\', \'Vols dans les véhicules\', \'Vols sans violence contre des personnes\', \'Vols violents sans arme\') then faits else 0 end) as nb_vols, ' +
+      'SUM(case when classe in (\'Cambriolages de logement\') then faits else 0 end) as nb_cambriolages ' +
+      ' from carte.securite ' +
+      'where codinsee = \''+codinsee+'\' '+
+      'group by annee', (error, results) => {
+      if (error) {
+          reject(error)
+    }
+    resolve(results.rows);
+  })
+}) 
+}
+
 module.exports = {
     getCommuneByCoord,
     getMeteoByCoord,
+    getSecuriteByCodinsee,
     getCommuneByCodinsee,
     getCloseTransaction,
     getPrixByCodinsee,
