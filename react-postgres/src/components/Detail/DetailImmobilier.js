@@ -16,30 +16,31 @@ export default function DetailImmobilier() {
   const [histo, setHisto] = useState(null);
   const dataHisto = useRef(null);
   const optionsHisto = useRef(null);
+  const [subscribe, setSubscribe] = useState(true);
 
   async function getHistoImmo() {
     const response = await axios.get(url);
     if (response.status === 200) {
-      console.log('SUCCESS 1 ', response)
       let close = response.data;
       return close;
     }
   };
 
   useEffect(() => {
-
-    let subscribe = true;
     async function fetch() {
       let resultats = await getHistoImmo();
       if (subscribe) {
         setHisto(resultats);
       }
       if (histo != null) {
+        setSubscribe(false);
         const labelsHisto = histo.map(row => row.annee_mutation);
         dataHisto.current = {
           labels: labelsHisto,
           datasets: [
-              {
+              {fill: false,
+                borderColor: '#ff4848',
+                tension: 0.1,
                 data: histo.map(row => row.round)
               },
             ],
@@ -48,10 +49,10 @@ export default function DetailImmobilier() {
             plugins: {
               title: {
                 display: true,
-                text: "Evolution Logement",
+                text: "Evolution des prix Logement",
               },
               legend: {
-                display: true,
+                display: false,
                 position: "bottom",
               },
             },
@@ -60,7 +61,6 @@ export default function DetailImmobilier() {
     }
     
     fetch();
-    return () => subscribe = false;
   }, [histo]);
 
     console.log('SUCCESS 2 ', histo);
@@ -109,7 +109,7 @@ export default function DetailImmobilier() {
       plugins: {
         title: {
           display: true,
-          text: "Date de consturction des batiments",
+          text: "Date de construction des batiments",
         },
           legend: {
               display: false,
@@ -152,14 +152,10 @@ export default function DetailImmobilier() {
           <Link to="/territoire">
             <CloseIcon className="icon-close" fontSize="large"/>
           </Link>
-            <ul style={{
-            display: "inline",
-          }}>
-              <PieChart donnee={dataType} largeur={30} hauteur={35} options={optionstype}/>
-              { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={35} options={optionsHisto.current}/> }
-              {/* <BarChart donnee={dataAge} largeur={30} hauteur={35} options={optionsAge}/> */}
-              <BarChart donnee={dataLogement} largeur={30} hauteur={35} options={optionsLogement}/>
-            </ul>
+              { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={40} options={optionsHisto.current}/> }
+              <BarChart donnee={dataAge} largeur={30} hauteur={40} options={optionsAge}/>
+              <BarChart donnee={dataLogement} largeur={30} hauteur={40} options={optionsLogement}/>
+              <PieChart donnee={dataType} largeur={30} hauteur={40} options={optionstype}/>
           </div>
         </div>
     );

@@ -1,4 +1,4 @@
-const { Pool, pool } = require("./pool.js");
+const { pool } = require("./pool.js");
 
 function getCommuneByCoord(lon,lat) {
     return new Promise(function(resolve, reject) {
@@ -47,8 +47,27 @@ function getCloseTransaction(lon, lat) {
     })
   })
 }
+
+function getMeteoByCoord(lon,lat) {
+  return new Promise(function(resolve, reject) {
+      //console.log('select ST_AsGeoJSON(ST_Transform(geom_commune,4326)) as geom, * from carte.territoire where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom_commune)');
+      pool.query('select annee, temperature_max, temperature_mediane, temperature_min from carte.meteo as met ' +
+      'inner join carte.station as stati on stati.id_station = met.id_station::integer ' +
+      'where met.id_station::integer = (SELECT id_station ' +
+      'from carte.station as stati ' +
+      'ORDER BY stati.geom_station <-> st_SetSRID(ST_POINT('+lon+', '+lat+'),4326) LIMIT 1)',
+      (error, results) => {
+      if (error) {
+          reject(error)
+    }
+    resolve(results.rows);
+  })
+}) 
+}
+
 module.exports = {
     getCommuneByCoord,
+    getMeteoByCoord,
     getCommuneByCodinsee,
     getCloseTransaction,
     getPrixByCodinsee,

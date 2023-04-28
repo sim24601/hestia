@@ -218,10 +218,11 @@
 #detail-container {
   position: absolute;
   display: block;
-  left:9%;
-  column-count: 3;
-  height: 80%;
-  width: 80%;
+  padding-top: 3%;
+  column-count: 4;
+  left:4%;
+  height: 70%;
+  width: 90%;
 }
 
 #Drisk-container {
