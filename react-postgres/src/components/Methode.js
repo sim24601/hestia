@@ -1,33 +1,43 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState, useCallback }  from "react";
 import "../styles/Methode.css";
-import qs from 'qs';
 import store from "../store";
 import GiteIcon from '@mui/icons-material/Gite';
 import Button from '@mui/material/Button';
 import axios from "axios";
+import TextField from '@mui/material/TextField';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import EditIcon from '@mui/icons-material/Edit';
 const { api_url2 } = require("../settings");
-
 
 function Methode() {
     const datadb = store.getState().commune.properties;
     const url = api_url2 + "/getprediction";
-    const [dt, setDt] = useState('');
     const [estimation, setEstimation] = useState('');
-    const [subscribe, setSubscribe] = useState(true);
+    const [mestimation, setMestimation] = useState('');
+    const [isSending, setIsSending] = useState(false);
+    const [edited,setEdited] = useState(false);
     const { geom, geom_commune, ...input} = datadb
+    const [param, setParam] = useState(input);
+    const [custom, setCustom] = useState(input);
 
-    async function estimate() {
-        console.log('SUCCESS 0 : ', input)
+    async function estimate(arg1) {
+        console.log('SUCCESS 0 : ', arg1)
         await axios.get(url, {
                     params: {
-                    bins: JSON.stringify(input),
+                    bins: JSON.stringify(arg1),
                   }
         })
         .then(function(response) {
             if (response.status === 200) {
                 let close = response.data[0][".pred"];
-                console.log('SUCCESS 1 :', close);
-                setEstimation(close);
+                console.log('SUCCESS 1 :', close, " avec edited  à ", edited);
+                if (!edited) {
+                    setEstimation(close);
+                }
+                if (edited) {
+                    setMestimation(close);
+                    setEdited(false);
+                }
             }
         })
         .catch(function(error) {
@@ -35,20 +45,35 @@ function Methode() {
         });
     };
 
-    function lancement() {
-        async function fetch() {
-          await estimate();
+    function edition() {
+        setEdited(true);
+        lancement(custom)
+    }
+
+    const lancement = useCallback(async (entree) => {
+        async function fetch(arg1) {
+          await estimate(arg1);
           console.log('success 2', estimation);
         }
-        fetch();
-    }
+        if (isSending) return
+        setIsSending(true);
+        fetch(entree);
+        setIsSending(false);
+    }, [isSending])
 
     return (
         <div className="methode-container">
-             {datadb !== "" && (<p>bienvenue à {datadb.nom_commune}</p>)}
-             {datadb !== "" && (<p>le prix des transaction s'élève à {datadb.prix}</p>)}
-             {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement()}>Estimation</Button>}
-             {estimation !== "" && <p>prix estimé : {estimation}</p>}
+            <div id="input" className="container">
+                <p>Saisie des inputs</p>
+                <TextField id="filled-basic" label="Nombre de logements" variant="filled" defaultValue={datadb.nb_log} onChange={(e)=>{setCustom({...custom, nb_log: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="Nombre d'inondations" variant="filled" defaultValue={datadb['inondations.et.ou.coulées.de.boue']} onChange={(e)=>{setCustom({...custom, 'inondations.et.ou.coulées.de.boue': Number(e.target.value)})}}/>
+                <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<EditIcon />} onClick={() =>edition()}>Override</Button>
+                {mestimation !== "" && <p>Prix modélisé avec parametres : {Intl.NumberFormat('fr-FR').format(Math.floor(mestimation*100)/100)} €</p>}
+            </div>
+             {datadb !== "" && (<p>Bienvenue à {datadb.nom_commune}</p>)}
+             {datadb !== "" && (<p>Prix des transactions : {Intl.NumberFormat('fr-FR').format(Math.floor(datadb.prix*100)/100)} €</p>)}
+             {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement(input)}>Estimation</Button>}
+             {estimation !== "" && <p>Prix modelisé : {Intl.NumberFormat('fr-FR').format(Math.floor(estimation*100)/100)} €</p>}
         </div>
     )
 }
