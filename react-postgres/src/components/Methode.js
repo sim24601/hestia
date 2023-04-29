@@ -17,10 +17,9 @@ function Methode() {
     const [isSending, setIsSending] = useState(false);
     const [edited,setEdited] = useState(false);
     const { geom, geom_commune, ...input} = datadb
-    const [param, setParam] = useState(input);
     const [custom, setCustom] = useState(input);
 
-    async function estimate(arg1) {
+    async function estimate(arg1, arg2) {
         console.log('SUCCESS 0 : ', arg1)
         await axios.get(url, {
                     params: {
@@ -29,12 +28,13 @@ function Methode() {
         })
         .then(function(response) {
             if (response.status === 200) {
+                console.log('status 3 à ',arg2)
                 let close = response.data[0][".pred"];
                 console.log('SUCCESS 1 :', close, " avec edited  à ", edited);
-                if (!edited) {
+                if (!arg2) {
                     setEstimation(close);
                 }
-                if (edited) {
+                if (arg2) {
                     setMestimation(close);
                     setEdited(false);
                 }
@@ -46,34 +46,50 @@ function Methode() {
     };
 
     function edition() {
-        setEdited(true);
-        lancement(custom)
+        // setEdited(true);
+        const alpha = true;
+        console.log('status à ',alpha);
+        lancement(custom, alpha);
     }
 
-    const lancement = useCallback(async (entree) => {
-        async function fetch(arg1) {
-          await estimate(arg1);
-          console.log('success 2', estimation);
+    const lancement = useCallback(async (entree, alpha) => {
+        async function fetch(arg1, alpha) {
+          await estimate(arg1, alpha);
         }
         if (isSending) return
         setIsSending(true);
-        fetch(entree);
+        console.log('status 2 à ',alpha)
+        fetch(entree, alpha);
         setIsSending(false);
     }, [isSending])
 
     return (
         <div className="methode-container">
             <div id="input" className="container">
-                <p>Saisie des inputs</p>
-                <TextField id="filled-basic" label="Nombre de logements" variant="filled" defaultValue={datadb.nb_log} onChange={(e)=>{setCustom({...custom, nb_log: Number(e.target.value)})}}/>
-                <TextField id="filled-basic" label="Nombre d'inondations" variant="filled" defaultValue={datadb['inondations.et.ou.coulées.de.boue']} onChange={(e)=>{setCustom({...custom, 'inondations.et.ou.coulées.de.boue': Number(e.target.value)})}}/>
+                <p>Saisie des paramètres personnalisés</p>
+                <TextField id="filled-basic" label="nombre de logements" variant="filled" defaultValue={datadb.nb_log} onChange={(e)=>{setCustom({...custom, nb_log: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="revenu median en €" variant="filled" defaultValue={datadb.revenu_median} onChange={(e)=>{setCustom({...custom, revenu_median: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="loyer moyen en €/m2" variant="filled" defaultValue={datadb.loyer_apt} onChange={(e)=>{setCustom({...custom, loyer_apt: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="nombre de vues wiki" variant="filled" defaultValue={datadb.vues} onChange={(e)=>{setCustom({...custom, vues: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="nombre de cambriolages" variant="filled" defaultValue={datadb.cambriolages} onChange={(e)=>{setCustom({...custom, cambriolages: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="nombre de permis de construire" variant="filled" defaultValue={datadb.dempc} onChange={(e)=>{setCustom({...custom, dempc: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="nombre de commerces" variant="filled" defaultValue={datadb.commerces} onChange={(e)=>{setCustom({...custom, commerces: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="équipements de santé" variant="filled" defaultValue={datadb.commerces} onChange={(e)=>{setCustom({...custom, commerces: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="temps de trajet à Paris" variant="filled" defaultValue={datadb.paris} onChange={(e)=>{setCustom({...custom, paris: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="DPE moyen de 0(G) à A(6)" variant="filled" defaultValue={datadb.dpe_moyen} onChange={(e)=>{setCustom({...custom, dpe_moyen: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="taux de réussite au bac" variant="filled" defaultValue={datadb.taux_reussite_bac} onChange={(e)=>{setCustom({...custom, taux_reussite_bac: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="nombre d'inondations" variant="filled" defaultValue={datadb['inondations.et.ou.coulées.de.boue']} onChange={(e)=>{setCustom({...custom, 'inondations.et.ou.coulées.de.boue': Number(e.target.value)})}}/>
+                <br />
+                <br />
                 <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<EditIcon />} onClick={() =>edition()}>Override</Button>
-                {mestimation !== "" && <p>Prix modélisé avec parametres : {Intl.NumberFormat('fr-FR').format(Math.floor(mestimation*100)/100)} €</p>}
+                {mestimation !== "" && <p>Prix modélisé avec paramètres : {Intl.NumberFormat('fr-FR').format(Math.floor(mestimation*100)/100)} €</p>}
             </div>
+            <div id="output" className="container">
              {datadb !== "" && (<p>Bienvenue à {datadb.nom_commune}</p>)}
              {datadb !== "" && (<p>Prix des transactions : {Intl.NumberFormat('fr-FR').format(Math.floor(datadb.prix*100)/100)} €</p>)}
-             {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement(input)}>Estimation</Button>}
+             {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement(input, false)}>Estimation</Button>}
              {estimation !== "" && <p>Prix modelisé : {Intl.NumberFormat('fr-FR').format(Math.floor(estimation*100)/100)} €</p>}
+             </div>
         </div>
     )
 }

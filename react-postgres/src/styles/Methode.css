@@ -22,7 +22,18 @@
   }
 
   #input {
+    top: 5%;
+    left: 30%;
     height: 70%;
+    width: 60%;
+    position: absolute;
+    display:block;
+  }
+
+  #output {
+    top: 5%;
+    left: 5%;
+    height: 35%;
     width: 20%;
     position: absolute;
     display:block;
