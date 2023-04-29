@@ -14,36 +14,31 @@ function Methode() {
     const [dt, setDt] = useState('');
     const [estimation, setEstimation] = useState('');
     const [subscribe, setSubscribe] = useState(true);
-    let input = datadb;
+    const { geom, geom_commune, ...input} = datadb
 
     async function estimate() {
-        console.log('SUCCESS 0', input);
+        console.log('SUCCESS 0 : ', input)
         await axios.get(url, {
                     params: {
-                    bins: qs.stringify(input),
+                    bins: JSON.stringify(input),
                   }
         })
         .then(function(response) {
-            console.log('SUCCESS 1 :', response);
             if (response.status === 200) {
-                let close = response;
-                return close;
+                let close = response.data[0][".pred"];
+                console.log('SUCCESS 1 :', close);
+                setEstimation(close);
             }
         })
         .catch(function(error) {
             console.log('alerte générale', error)
-            return error
         });
     };
 
     function lancement() {
         async function fetch() {
-          let resultats = await estimate();
-          console.log('success 2', resultats);
-          if (subscribe) {
-            setEstimation(resultats);
-          }
-          setSubscribe(false);
+          await estimate();
+          console.log('success 2', estimation);
         }
         fetch();
     }
@@ -51,6 +46,7 @@ function Methode() {
     return (
         <div className="methode-container">
              {datadb !== "" && (<p>bienvenue à {datadb.nom_commune}</p>)}
+             {datadb !== "" && (<p>le prix des transaction s'élève à {datadb.prix}</p>)}
              {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement()}>Estimation</Button>}
              {estimation !== "" && <p>prix estimé : {estimation}</p>}
         </div>
