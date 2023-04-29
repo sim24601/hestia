@@ -1,7 +1,9 @@
 // default to 127.0.0.1:3001
-var api_host = "127.0.0.1:3001";
+let api_host = "127.0.0.1:3001";
+let api_host2 = "localhost:3002";
 
 const api_url = "http://" + api_host + "";
+const api_url2 = "http://" + api_host2 + "";
 
 const config = {
     map: {
@@ -32,5 +34,6 @@ const config = {
 
 module.exports = {
     api_url,
+    api_url2,
     config,
 };

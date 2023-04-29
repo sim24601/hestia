@@ -19,7 +19,7 @@ const Layout = () => {
           <Button variant="contained" style={{ backgroundColor: "#ffc638" }} startIcon={<PublicIcon style={{ color: "black" }} />}><Link to="/Climat">Climat</Link></Button>
           </li>
           <li>
-          <Button variant="contained" style={{ backgroundColor: "#ffc638" }} startIcon={<PsychologyIcon style={{ color: "black" }} />}><Link to="/Climat">Methode</Link></Button>
+          <Button variant="contained" style={{ backgroundColor: "#ffc638" }} startIcon={<PsychologyIcon style={{ color: "black" }} />}><Link to="/Methode">Methode</Link></Button>
           </li>
         </ul>
       </nav>

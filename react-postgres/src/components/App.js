@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import Territoire from "./Territoire";
 import Climat from "./Climat";
+import Methode from "./Methode";
 import DetailPopulation from "./Detail/DetailPopulation";
 import DetailImmobilier from "./Detail/DetailImmobilier";
 import DetailRisque from "./Detail/DetailRisque";
@@ -28,6 +29,7 @@ export default function App() {
                             <Route path=":communeCode" element={<Territoire />} />
                         </Route>
                         <Route path="climat" element={<Climat />} />
+                        <Route path="methode" element={<Methode />} />
                         <Route path="*" element={<NoPage />} />
                         <Route path="population" element={<DetailPopulation />} />
                         <Route path="immobilier" element={<DetailImmobilier />} />

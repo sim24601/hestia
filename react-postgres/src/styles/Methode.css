@@ -1,0 +1,9 @@
+.methode-container {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(0deg, rgba(255, 198, 56,0.2), rgba(255, 166, 65,1)), url("../img/paris.jpg");
+    /*background: linear-gradient(0deg,  #00cdb1, #a0d8e7);*/
+    background-size: cover;
+    position: fixed;
+    display:block;
+  }
