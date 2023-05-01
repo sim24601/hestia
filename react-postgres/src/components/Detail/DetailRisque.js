@@ -72,6 +72,16 @@ export default function DetailClimat() {
                   display: true,
                   position: "bottom",
                 },
+                subtitle: {
+                  display: true,
+                  text: 'source SYNOP 2014-2022',
+                  position : "bottom",
+                  align : "end",
+                  font: {
+                  size: 11,
+                  style: 'italic',
+                  }
+                },
               },
             };
           } 
@@ -80,31 +90,77 @@ export default function DetailClimat() {
       fetch();
     }, [histo]);
 
-    const labelsTemperature = ["min", "mediane", "max"];
+    const labelsVehicule = ["Parking privé", "Menage avec 1 voiture", "Menage avec 2 voitures"];
 
-    const dataTemperature = {
-        labels: labelsTemperature,
+    const dataVehicule = {
+        labels: labelsVehicule,
         datasets: [
           {
-            label: "Temperatures",
-            backgroundColor: ["#a0d8e7","#00cdb1","#ffa641"],
+            label: "Vehicule",
+            backgroundColor: ["#ff4848","#00cdb1","#ffa641"],
             borderColor: "grey",
             borderWidth:0,
-            data: [datadb.temperature_min, datadb.temperature_mediane, datadb.temperature_max],
+            data: [datadb.nb_res_parking, datadb.menages_1auto, datadb.menages_2autos],
           },
         ],
       };
 
-    const optionsTemperature = {
+    const optionsVehicule = {
       plugins: {
         title: {
           display: true,
-          text: "Temperatures depuis 2014",
+          text: "Equipements automobiles dans la commune",
+        },
+        legend: {
+            display: false,
+            position: 'bottom',
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
+        },
+      }
+    };
+
+    const labelsChauffage = ["Chauffage collectif", "Chauffage individuel non elec", "Chauffage individuel électrique"];
+
+    const dataChauffage = {
+        labels: labelsChauffage,
+        datasets: [
+          {
+            label: "Chauffage",
+            backgroundColor: ["#00cdb1","#ffc638","#a0d8e7"],
+            data: [datadb.nb_res_cc, (datadb.nb_res_ci-datadb.nb_res_ce), datadb.nb_res_ce],
+          },
+        ],
+      };
+
+    const optionsChauffage = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Mode de chauffage des residences",
         },
         legend: {
             display: true,
             position: 'bottom',
-        }
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
+        },
       }
     };
 
@@ -115,7 +171,7 @@ export default function DetailClimat() {
       datasets: [
         {
           label: "",
-          backgroundColor: ["#00cdb1","#ffa641","#ff4848", "#a0d8e7", "#ffc638"],
+          backgroundColor: ["#00cdb1","#ffa641", "#a0d8e7", "#ffc638"],
           borderColor: "#ffc638",
           border:0,
           borderRadius : 4,
@@ -127,12 +183,22 @@ export default function DetailClimat() {
       plugins: {
           title: {
             display: true,
-            text: "Nombres d'évènements depuis 2014'",
+            text: "Nombres d'évènements météo depuis 2014",
           },
           legend: {
-              display: true,
+              display: false,
               position: 'bottom',
-          }
+          },
+          subtitle: {
+            display: true,
+            text: 'source SYNOP 2014-2022',
+            position : "bottom",
+            align : "end",
+            font: {
+            size: 11,
+            style: 'italic',
+            }
+          },
       }
     }
 
@@ -146,13 +212,10 @@ export default function DetailClimat() {
           <Link to="/territoire">
             <CloseIcon className="icon-close" fontSize="large"/>
           </Link>
-            <ul style={{
-            display: "inline",
-          }}>
-               { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={40} options={optionsHisto.current}/> }
-              <BarChart donnee={dataMeteo} largeur={30} hauteur={35} options={optionsMeteo}/>
-              <BarChart donnee={dataTemperature} largeur={30} hauteur={35} options={optionsTemperature}/>
-            </ul>
+              <BarChart donnee={dataVehicule} largeur={30} hauteur={38} options={optionsVehicule}/>
+              <PieChart donnee={dataChauffage} largeur={30} hauteur={38} options={optionsChauffage}/>
+              <BarChart donnee={dataMeteo} largeur={30} hauteur={38} options={optionsMeteo}/>
+              { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={38} options={optionsHisto.current}/> }
           </div>
         </div>
     );

@@ -63,6 +63,16 @@ export default function DashboardLocalRisk() {
             display: true,
             position: "right",
           },
+          subtitle: {
+            display: true,
+            text: 'source France Assureurs',
+            position : "bottom",
+            align : "end",
+            font: {
+            size: 11,
+            style: 'italic',
+            }
+          },
         },
       };
 
@@ -87,6 +97,16 @@ export default function DashboardLocalRisk() {
             legend: {
               display: true,
               position: "right",
+            },
+            subtitle: {
+              display: true,
+              text: 'source France Assureurs',
+              position : "bottom",
+              align : "end",
+              font: {
+              size: 11,
+              style: 'italic',
+              }
             },
           },
         };

@@ -68,12 +68,16 @@ function Methode() {
             <div id="input" className="container">
                 <p>Saisie des paramètres personnalisés</p>
                 <TextField id="filled-basic" label="nombre de logements" variant="filled" defaultValue={datadb.nb_log} onChange={(e)=>{setCustom({...custom, nb_log: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="population" variant="filled" defaultValue={datadb.population} onChange={(e)=>{setCustom({...custom, population: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="revenu median en €" variant="filled" defaultValue={datadb.revenu_median} onChange={(e)=>{setCustom({...custom, revenu_median: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="loyer moyen en €/m2" variant="filled" defaultValue={datadb.loyer_apt} onChange={(e)=>{setCustom({...custom, loyer_apt: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="nombre de vues wiki" variant="filled" defaultValue={datadb.vues} onChange={(e)=>{setCustom({...custom, vues: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="nombre de cambriolages" variant="filled" defaultValue={datadb.cambriolages} onChange={(e)=>{setCustom({...custom, cambriolages: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="nombre de permis de construire" variant="filled" defaultValue={datadb.dempc} onChange={(e)=>{setCustom({...custom, dempc: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="nombre de commerces" variant="filled" defaultValue={datadb.commerces} onChange={(e)=>{setCustom({...custom, commerces: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="Risque d'argile de 1 à 3" variant="filled" defaultValue={datadb.argile} onChange={(e)=>{setCustom({...custom, argile: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="température mediane" variant="filled" defaultValue={datadb.temperature_mediane} onChange={(e)=>{setCustom({...custom, temperature_mediane: Number(e.target.value)})}}/>
+                <TextField id="filled-basic" label="nombre de voyageurs en train" variant="filled" defaultValue={datadb.nb_voyageurs_train} onChange={(e)=>{setCustom({...custom, nb_voyageurs_train: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="équipements de santé" variant="filled" defaultValue={datadb.commerces} onChange={(e)=>{setCustom({...custom, commerces: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="temps de trajet à Paris" variant="filled" defaultValue={datadb.paris} onChange={(e)=>{setCustom({...custom, paris: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="DPE moyen de 0(G) à A(6)" variant="filled" defaultValue={datadb.dpe_moyen} onChange={(e)=>{setCustom({...custom, dpe_moyen: Number(e.target.value)})}}/>

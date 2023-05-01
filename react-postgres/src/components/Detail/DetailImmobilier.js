@@ -55,6 +55,16 @@ export default function DetailImmobilier() {
                 display: false,
                 position: "bottom",
               },
+              subtitle: {
+                display: true,
+                text: 'source DVF 2023',
+                position : "bottom",
+                align : "end",
+                font: {
+                size: 11,
+                style: 'italic',
+                }
+              },
             },
           };
         } 
@@ -62,8 +72,6 @@ export default function DetailImmobilier() {
     
     fetch();
   }, [histo]);
-
-    console.log('SUCCESS 2 ', histo);
 
     const labelsType = ["principal", "secondaire", "vacant"];
 
@@ -86,6 +94,16 @@ export default function DetailImmobilier() {
         legend: {
           display: true,
           position: "bottom",
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
         },
       },
     };
@@ -111,9 +129,19 @@ export default function DetailImmobilier() {
           display: true,
           text: "Date de construction des batiments",
         },
-          legend: {
-              display: false,
+        legend: {
+            display: false,
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
           }
+        },
       }
     };
 
@@ -139,6 +167,16 @@ export default function DetailImmobilier() {
           display: false,
           position: "bottom",
         },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
+        },
       },
     };
 
@@ -152,10 +190,10 @@ export default function DetailImmobilier() {
           <Link to="/territoire">
             <CloseIcon className="icon-close" fontSize="large"/>
           </Link>
-              { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={40} options={optionsHisto.current}/> }
-              <BarChart donnee={dataAge} largeur={30} hauteur={40} options={optionsAge}/>
-              <BarChart donnee={dataLogement} largeur={30} hauteur={40} options={optionsLogement}/>
-              <PieChart donnee={dataType} largeur={30} hauteur={40} options={optionstype}/>
+              <BarChart donnee={dataAge} largeur={30} hauteur={38} options={optionsAge}/>
+              <PieChart donnee={dataType} largeur={30} hauteur={38} options={optionstype}/>
+              <BarChart donnee={dataLogement} largeur={30} hauteur={38} options={optionsLogement}/>
+              { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={37} options={optionsHisto.current}/> }
           </div>
         </div>
     );

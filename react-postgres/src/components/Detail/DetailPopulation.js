@@ -30,9 +30,19 @@ export default function DetailPopulation() {
           display: true,
           text: "Lieu de Travail",
         },
-          legend: {
-              display: false,
+        legend: {
+            display: false,
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
           }
+        },
       }
     };
 
@@ -55,10 +65,20 @@ export default function DetailPopulation() {
           display: true,
           text: "Mode de transports",
         },
-          legend: {
-              display: true,
-              position: "bottom",
+        legend: {
+            display: true,
+            position: "bottom",
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
           }
+        },
       }
     };
 
@@ -81,6 +101,16 @@ export default function DetailPopulation() {
         legend: {
           display: true,
           position: "bottom",
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
         },
       },
     };
@@ -106,6 +136,16 @@ export default function DetailPopulation() {
         legend: {
           display: true,
           position: "bottom",
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
         },
       },
     };

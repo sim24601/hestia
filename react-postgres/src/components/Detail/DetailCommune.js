@@ -67,6 +67,16 @@ export default function DetailCommune() {
                   display: true,
                   position: "bottom",
                 },
+                subtitle: {
+                  display: true,
+                  text: 'source Police/Gendarmerie',
+                  position : "bottom",
+                  align : "end",
+                  font: {
+                  size: 11,
+                  style: 'italic',
+                  }
+                },
               },
             };
           } 
@@ -81,7 +91,7 @@ export default function DetailCommune() {
         labels: labelsSecurite,
         datasets: [
           { label: "pourcentage par habitant / logement",
-            backgroundColor: ["#ffa641", "#ff4848", "#ffc638"],
+            backgroundColor: ["#a0d8e7", "#00cdb1", "#ffc638"],
             borderRadius : 4,
             maxBarThickness : 30,
             data: [100*datadb.vols/(datadb.population*7), 100*datadb.violences/(datadb.population*7), 100*datadb.cambriolages/(datadb.nb_log*7)],
@@ -95,10 +105,20 @@ export default function DetailCommune() {
                 display: true,
                 text: "Pourcentage de faits par habitant par an",
               },
-                legend: {
+              legend: {
                     display: false,
-                    position: "bottom",
+                  position: "bottom",
+              },
+              subtitle: {
+                display: true,
+                text: 'source Police/Gendarmerie 2016-2022',
+                position : "bottom",
+                align : "end",
+                font: {
+                size: 11,
+                style: 'italic',
                 }
+              },
             }
           };
         
@@ -119,9 +139,19 @@ export default function DetailCommune() {
       plugins: {
         title: {
           display: true,
-          text: "Nombre d'equipements",
+          text: "Nombre d'équipements",
         },
-          legend: {
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2021',
+          position : "bottom",
+          align : "end",
+          font: {
+            size: 11,
+            style: 'italic',
+          }
+        },
+        legend: {
               display: false,
               position: "bottom",
           }
@@ -148,9 +178,19 @@ export default function DetailCommune() {
           display: true,
           text: "Durée en minutes",
         },
-          legend: {
-              display: false,
+        legend: {
+            display: false,
+        },
+        subtitle: {
+          display: true,
+          text: 'source OSM 2023',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
           }
+        },
       }
     };
 
@@ -164,10 +204,10 @@ export default function DetailCommune() {
           <Link to="/territoire">
             <CloseIcon className="icon-close" fontSize="large"/>
           </Link>
-            { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={40} options={optionsHisto.current}/> }
-            <BarChart donnee={dataSecurite} largeur={30} hauteur={35} options={optionsSecurite}/>
-            <BarChart donnee={dataActivite} largeur={30} hauteur={35} options={optionsActivite}/>
-            <BarChart donnee={dataDistance} largeur={30} hauteur={35} options={optionsDistance}/>
+            <BarChart donnee={dataActivite} largeur={30} hauteur={37} options={optionsActivite}/>
+            <BarChart donnee={dataDistance} largeur={30} hauteur={37} options={optionsDistance}/>
+            <BarChart donnee={dataSecurite} largeur={30} hauteur={37} options={optionsSecurite}/>
+            { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={37} options={optionsHisto.current}/> }
           </div>
         </div>
     );
