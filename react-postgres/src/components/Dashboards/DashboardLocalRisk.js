@@ -121,7 +121,7 @@ export default function DashboardLocalRisk() {
             </div> */}
             </p>
             <ul>
-                <p className="localRisqueDescription"> Scénariis sur la commune de {datadb.nom_commune} </p>
+                <p className="localRisqueDescription"> Scénario sur la commune de {datadb.nom_commune} </p>
                 <p className="localRisqueDescription"> Durée moyenne de résidence : {Math.floor(dureeResidence)} années {dureeResidenceMois} mois</p>
             </ul>
             <br />
@@ -164,7 +164,7 @@ export default function DashboardLocalRisk() {
             <Table aria-label="simple table" size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell>En 2050, scénario de +2°C</TableCell>
+                  <TableCell>Extrapolation en 2050, scénario de +2°C</TableCell>
                   <TableCell align="right">Coût en €</TableCell>
                 </TableRow>
               </TableHead>

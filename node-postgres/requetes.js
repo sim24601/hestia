@@ -39,8 +39,8 @@ function getPrixByCodinsee(codinsee) {
 
 function getCloseTransaction(lon, lat) {
   return new Promise(function(resolve, reject) {
-    console.log('select annee_mutation, taille_bati, taille_terrain, prix_brut, ST_X(ST_GeometryN(geomloc,1)) as lon, ST_Y(ST_GeometryN(geomloc,1)) as lat from carte.dvf where codinsee=(select codinsee from carte.geo where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom)) and geomloc is not NULL ORDER BY geomloc <-> st_SetSRID(ST_POINT('+lon+', '+lat+'),4326) ASC LIMIT 10');
-    pool.query('select annee_mutation, taille_bati, taille_terrain, prix_brut, ST_X(ST_GeometryN(geomloc,1)) as lon, ST_Y(ST_GeometryN(geomloc,1)) as lat from carte.dvf where codinsee=(select codinsee from carte.geo where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom)) and geomloc is not NULL ORDER BY geomloc <-> st_SetSRID(ST_POINT('+lon+', '+lat+'),4326) ASC LIMIT 10', (error, results) => {
+    console.log('select annee_mutation, taille_bati, taille_terrain, prix_brut, ST_X(ST_GeometryN(geomloc,1)) as lon, ST_Y(ST_GeometryN(geomloc,1)) as lat, nb_pieces from carte.dvf where codinsee=(select codinsee from carte.geo where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom)) and geomloc is not NULL ORDER BY geomloc <-> st_SetSRID(ST_POINT('+lon+', '+lat+'),4326) ASC LIMIT 10');
+    pool.query('select annee_mutation, taille_bati, taille_terrain, prix_brut, ST_X(ST_GeometryN(geomloc,1)) as lon, ST_Y(ST_GeometryN(geomloc,1)) as lat, nb_pieces from carte.dvf where codinsee=(select codinsee from carte.geo where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom)) and geomloc is not NULL ORDER BY geomloc <-> st_SetSRID(ST_POINT('+lon+', '+lat+'),4326) ASC LIMIT 10', (error, results) => {
       if (error) {
         reject(error)
       }

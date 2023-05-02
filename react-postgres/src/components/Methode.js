@@ -66,7 +66,7 @@ function Methode() {
     return (
         <div className="methode-container">
             <div id="input" className="container">
-                <p>Saisie des paramètres personnalisés</p>
+                <p>Personnalisez vos paramètres :</p>
                 <TextField id="filled-basic" label="nombre de logements" variant="filled" defaultValue={datadb.nb_log} onChange={(e)=>{setCustom({...custom, nb_log: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="population" variant="filled" defaultValue={datadb.population} onChange={(e)=>{setCustom({...custom, population: Number(e.target.value)})}}/>
                 <TextField id="filled-basic" label="revenu median en €" variant="filled" defaultValue={datadb.revenu_median} onChange={(e)=>{setCustom({...custom, revenu_median: Number(e.target.value)})}}/>
@@ -85,13 +85,13 @@ function Methode() {
                 <TextField id="filled-basic" label="nombre d'inondations" variant="filled" defaultValue={datadb['inondations.et.ou.coulées.de.boue']} onChange={(e)=>{setCustom({...custom, 'inondations.et.ou.coulées.de.boue': Number(e.target.value)})}}/>
                 <br />
                 <br />
-                <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<EditIcon />} onClick={() =>edition()}>Override</Button>
+                <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<EditIcon />} onClick={() =>edition()}>Mise à jour</Button>
                 {mestimation !== "" && <p>Prix modélisé avec paramètres : {Intl.NumberFormat('fr-FR').format(Math.floor(mestimation*100)/100)} €</p>}
             </div>
             <div id="output" className="container">
              {datadb !== "" && (<p>Bienvenue à {datadb.nom_commune}</p>)}
              {datadb !== "" && (<p>Prix des transactions : {Intl.NumberFormat('fr-FR').format(Math.floor(datadb.prix*100)/100)} €</p>)}
-             {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement(input, false)}>Estimation</Button>}
+             {datadb !== "" && <Button variant="contained" style={{ backgroundColor: "#00cdb1", color: "black"}} startIcon={<GiteIcon />} onClick={() =>lancement(input, false)}>Modélisation</Button>}
              {estimation !== "" && <p>Prix modelisé : {Intl.NumberFormat('fr-FR').format(Math.floor(estimation*100)/100)} €</p>}
              </div>
         </div>

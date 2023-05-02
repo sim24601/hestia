@@ -158,7 +158,7 @@ export default function DetailCommune() {
       }
     };
 
-    const labelsDistance = ["Bordeaux", "Lille", "Lyon", "Paris", "Marseille", "Toulouse"];
+    const labelsDistance = ["Bordeaux", "Lille", "Lyon", "Paris", "Marseille", "Rennes"];
 
     const dataDistance = {
       labels: labelsDistance,
@@ -168,7 +168,7 @@ export default function DetailCommune() {
           borderColor: "#ffc638",
           borderRadius : 4,
           maxBarThickness : 30,
-          data: [datadb.bordeaux, datadb.lille, datadb.lyon, datadb.paris, datadb.marseille, datadb.toulouse],
+          data: [datadb.bordeaux, datadb.lille, datadb.lyon, datadb.paris, datadb.marseille, datadb.rennes],
         },
       ],
     };
@@ -176,7 +176,7 @@ export default function DetailCommune() {
       plugins: {
         title: {
           display: true,
-          text: "Durée en minutes",
+          text: "Durée de trajet en minutes",
         },
         legend: {
             display: false,

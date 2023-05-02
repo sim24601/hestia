@@ -26,7 +26,7 @@ export default function DashboardClimat() {
       plugins: {
         title: {
           display: true,
-          text: "niveau de risque en %",
+          text: "Principaux risques (niveau en %)",
         },
         legend: {
             display: true,
@@ -48,7 +48,7 @@ export default function DashboardClimat() {
         <div>
             <ul>
             <p>Nombre d'incendies depuis 2014 : {datadb.nb_incendie}</p>
-            <p>Nombre de canicules depuis 2014 (jour/nuit) : {datadb.canicule}</p>
+            <p>Jours de canicule depuis 2014 : {datadb.canicule}</p>
             <p style={styleChart}><BarChart donnee={dataRisk} largeur={45} hauteur={25} options={optionsRisk}/></p>
             </ul>
         </div>

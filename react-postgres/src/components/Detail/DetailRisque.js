@@ -90,7 +90,7 @@ export default function DetailClimat() {
       fetch();
     }, [histo]);
 
-    const labelsVehicule = ["Parking privé", "Menage avec 1 voiture", "Menage avec 2 voitures"];
+    const labelsVehicule = ["Parkings privés", "Menages avec 1 voiture", "Menages avec 2 voitures"];
 
     const dataVehicule = {
         labels: labelsVehicule,

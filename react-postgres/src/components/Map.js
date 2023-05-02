@@ -145,20 +145,24 @@ function MapWrapper() {
                 transacMarkerLayer.addTo(mapRef.current);
                 let popuptransaction = `<div class="commune-popup-container">
                     <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Annee de mutation: </span> 
+                      <span class="commune-popup-title">Année de mutation: </span> 
                       <span>${transacdata.annee_mutation}</span>
                     </div>     
                     <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Prix Brut en euros: </span> 
-                      <span>${transacdata.prix_brut}</span>
+                      <span class="commune-popup-title">Prix Brut : </span> 
+                      <span>${Intl.NumberFormat('fr-FR').format(Math.floor(transacdata.prix_brut*100)/100)} €</span>
                     </div>
                     <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Taille du bati en m2 : </span> 
-                      <span>${transacdata.taille_bati}</span>     
+                        <span class="commune-popup-title">Nombre de pieces : </span> 
+                        <span>${transacdata.nb_pieces} pieces</span>     
                     </div>
                     <div class="commune-popup-line"> 
-                      <span class="commune-popup-title">Taille du terrain en m2 : </span> 
-                      <span>${transacdata.taille_terrain}</span>     
+                      <span class="commune-popup-title">Surface du bati en m2 : </span> 
+                      <span>${transacdata.taille_bati} m²</span>     
+                    </div>
+                    <div class="commune-popup-line"> 
+                      <span class="commune-popup-title">Surface du terrain en m2 : </span> 
+                      <span>${transacdata.taille_terrain} m²</span>     
                     </div>
                     </div>`;
                     transacMarkerLayer
