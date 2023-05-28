@@ -44,8 +44,8 @@ export default function DashboardPopulation() {
     return (
         <div>
           <ul>
-            <p>population : {datadb.population}</p>
-            <p>revenu median : {datadb.revenu_median}</p>
+            <p>population : {Intl.NumberFormat('fr-FR').format(datadb.population)}</p>
+            <p>revenu median : {Intl.NumberFormat('fr-FR').format(datadb.revenu_median)} €</p>
             <p style={styleChart}><BarChart donnee={dataAge} largeur={36} hauteur={21} options={optionsAge}/></p>
           </ul>
         </div>

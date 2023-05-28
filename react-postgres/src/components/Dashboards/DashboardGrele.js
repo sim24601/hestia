@@ -2,7 +2,13 @@ import React from "react";
 import "../../styles/CarteClimat.css";
 import carte from '../../img/carte/catnat_gre.png';
 import store from "../../store";
-import BarChart from "../Charts/Barchart";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 export default function DashboardGrele() {
     const datadb = store.getState().commune.properties;
@@ -13,44 +19,84 @@ export default function DashboardGrele() {
     const coutComplet = (coutMoyen+380)*nb_catnat*dureeResidence/40
     const coutCompletRCP85 = 1.35*(coutMoyen+380)*nb_catnat*dureeResidence/40
 
-    const labelsCout = ["Coût Moyen", "Coût Complet", "Coût Complet RCP8.5"];
-
-    const dataCout = {
-        labels: labelsCout,
-        datasets: [
-          {
-            backgroundColor: ["#a0d8e7","#00cdb1","#ffa641"],
-            data: [coutMoyen, coutComplet, coutCompletRCP85],
-          },
-        ],
-      };
-    
-      const optionsCout = {
-        plugins: {
-          title: {
-            display: true,
-            text: "Coût du risque",
-          },
-          legend: {
-            display: true,
-            position: "bottom",
-          },
-        },
-      };
-
     return (
         <div>
             <img className="carte" src={carte}></img>
             {datadb != "" && (<div>
-            <ul><p className="texte"> Commune : {datadb.nom_commune} </p>
-            <p className="texte"> nombre d'occurences depuis 1982 : {nb_catnat} </p>
-            <p className="texte"> coût moyen d'un sinistre : {coutMoyen} € + 380 € de franchise </p>
-            <p className="texte"> durée moyenne de résidence : {Math.floor(dureeResidence)} années {dureeResidenceMois} mois</p>
-            <p className="texte"> coût complet du risque : {Math.floor(coutComplet*100)/100} € </p>
-            <p className="texte"> coût complet du risque (scenario RCP8.5): {Math.floor(coutCompletRCP85*100)/100} € </p>
-            <div style={{textAlign:"right", position: "absolute",left:"59%", width:"40%", height:"30%"}}><BarChart donnee={dataCout} largeur={10} hauteur={7} options={optionsCout}/> </div>
-            </ul>
-            </div>)}
+            <ul>
+            <TableContainer className="texte" sx={{width: "37vw"}} component={Paper}>
+            <Table aria-label="Top 5 des communes à risques" size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Rang</TableCell>
+                  <TableCell>Commune</TableCell>
+                  <TableCell>Nb.</TableCell>
+                  <TableCell>Coût Moyen</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    1
+                    </TableCell>
+                    <TableCell>Le Bouscat</TableCell>
+                    <TableCell align="center">4</TableCell>
+                    <TableCell>1615.85 €</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    2
+                    </TableCell>
+                    <TableCell>Doué-en-Anjou</TableCell>
+                    <TableCell align="center">3</TableCell>
+                    <TableCell>1317.86 €</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    3
+                    </TableCell>
+                    <TableCell>Gennes-Val-de-Loire</TableCell>
+                    <TableCell align="center">3</TableCell>
+                    <TableCell>1317,86 €</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    4
+                    </TableCell>
+                    <TableCell>Les Garennes sur Loire</TableCell>
+                    <TableCell align="center">3</TableCell>
+                    <TableCell>1317.86 €</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    5
+                    </TableCell>
+                    <TableCell>Neuillé</TableCell>
+                    <TableCell align="center">3</TableCell>
+                    <TableCell>1317.86 €</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    ...
+                    </TableCell>
+                    <TableCell>...</TableCell>
+                    <TableCell align="center">...</TableCell>
+                    <TableCell>...</TableCell>
+                    <TableCell>...</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                    /
+                    </TableCell>
+                    <TableCell>{datadb.nom_commune}</TableCell>
+                    <TableCell align="center">{nb_catnat}</TableCell>
+                    <TableCell>{datadb.cttgn}</TableCell>
+                  </TableRow>
+              </TableBody>
+          </Table>
+        </TableContainer>
+        </ul>
+        </div>)}
         </div>
     );
 }

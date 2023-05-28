@@ -74,8 +74,8 @@ export default function DashboardImmo() {
     return (
         <div>
             <ul>
-                <p> prix de l'immobilier : {Math.floor(data.prix,2)}€/m²</p>
-                <p>nombre de logement: {data.nb_log}</p>
+                <p> prix de l'immobilier : {Intl.NumberFormat('fr-FR').format(Math.floor(data.prix,2))}€/m²</p>
+                <p>nombre de logement: {Intl.NumberFormat('fr-FR').format(data.nb_log)}</p>
                 <p style={styleChart}><PieChart donnee={dataClasse} largeur={50} hauteur={50} options={optionsClasse}/>
                 <BarChart donnee={dataLoyer} largeur={60} hauteur={60} options={optionsLoyer}/></p>
             </ul>

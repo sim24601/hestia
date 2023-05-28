@@ -6,8 +6,8 @@ class Home extends Component {
         return (
             <div className="home-container">
                 <h1>Bienvenue</h1>
-                <p>Bienvenue sur le site du projet Immobilier et climat</p>
-                <p>Nous vous invitons à cliquer sur le bouton territoire pour commencer votre visite.</p>
+                <p>Bienvenue sur le site Etudes Risques Immobiliers et Climat</p>
+                <p>Nous vous invitons à cliquer sur le bouton TERRITOIRE pour commencer votre visite.</p>
             </div>
         );
     }

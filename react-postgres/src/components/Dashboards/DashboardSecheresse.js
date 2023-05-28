@@ -68,46 +68,46 @@ export default function DashboardSecheresse() {
                     <TableCell component="th" scope="row">
                     1
                     </TableCell>
-                    <TableCell>Antibes</TableCell>
-                    <TableCell align="center">14</TableCell>
-                    <TableCell>{echelleCout[0]}</TableCell>
-                    <TableCell>{echelleSp[0]}</TableCell>
+                    <TableCell>Toulouse</TableCell>
+                    <TableCell align="center">26</TableCell>
+                    <TableCell>{echelleCout[3]}</TableCell>
+                    <TableCell>{echelleSp[2]}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell component="th" scope="row">
                     2
                     </TableCell>
-                    <TableCell>Nice</TableCell>
-                    <TableCell align="center">14</TableCell>
+                    <TableCell>Bordeaux</TableCell>
+                    <TableCell align="center">22</TableCell>
                     <TableCell>{echelleCout[4]}</TableCell>
-                    <TableCell>{echelleSp[1]}</TableCell>
+                    <TableCell>{echelleSp[2]}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell component="th" scope="row">
                     3
                     </TableCell>
-                    <TableCell>Cannes</TableCell>
-                    <TableCell align="center">13</TableCell>
-                    <TableCell>{echelleCout[3]}</TableCell>
-                    <TableCell>{echelleSp[1]}</TableCell>
+                    <TableCell>Basillac et Auberoche</TableCell>
+                    <TableCell align="center">21</TableCell>
+                    <TableCell>{echelleCout[4]}</TableCell>
+                    <TableCell>{echelleSp[5]}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell component="th" scope="row">
                     4
                     </TableCell>
-                    <TableCell>Cagnes-sur-Mer</TableCell>
-                    <TableCell align="center">12</TableCell>
-                    <TableCell>{echelleCout[4]}</TableCell>
-                    <TableCell>{echelleSp[21]}</TableCell>
+                    <TableCell>Thouars</TableCell>
+                    <TableCell align="center">21</TableCell>
+                    <TableCell>{echelleCout[3]}</TableCell>
+                    <TableCell>{echelleSp[2]}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell component="th" scope="row">
                     5
                     </TableCell>
-                    <TableCell>Menton</TableCell>
-                    <TableCell align="center">11</TableCell>
+                    <TableCell>Montauban</TableCell>
+                    <TableCell align="center">18</TableCell>
                     <TableCell>{echelleCout[4]}</TableCell>
-                    <TableCell>{echelleSp[3]}</TableCell>
+                    <TableCell>{echelleSp[5]}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell component="th" scope="row">
@@ -124,8 +124,8 @@ export default function DashboardSecheresse() {
                     </TableCell>
                     <TableCell>{datadb.nom_commune}</TableCell>
                     <TableCell align="center">{nb_catnat}</TableCell>
-                    <TableCell>{echelleCout[datadb.ctinon]}</TableCell>
-                    <TableCell>{echelleSp[datadb.spinon]}</TableCell>
+                    <TableCell>{echelleCout[datadb.ctsech]}</TableCell>
+                    <TableCell>{echelleSp[datadb.spsech]}</TableCell>
                   </TableRow>
               </TableBody>
           </Table>
