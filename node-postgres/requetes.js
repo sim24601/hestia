@@ -49,6 +49,24 @@ function getCloseTransaction(lon, lat) {
   })
 }
 
+function getWikiByCodinsee(codinsee) {
+  return new Promise(function(resolve, reject) {
+      //console.log('select ST_AsGeoJSON(ST_Transform(geom_commune,4326)) as geom, * from carte.territoire where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom_commune)');
+      pool.query('select annee, ' +
+      'SUM(vues) as vues ' +
+      ' from carte.wiki ' +
+      'where code = \''+codinsee+'\' '+
+      ' and annee != 2023 ' +
+      'group by annee',
+      (error, results) => {
+      if (error) {
+          reject(error)
+    }
+    resolve(results.rows);
+  })
+}) 
+}
+
 function getMeteoByCoord(lon,lat) {
   return new Promise(function(resolve, reject) {
       //console.log('select ST_AsGeoJSON(ST_Transform(geom_commune,4326)) as geom, * from carte.territoire where ST_WITHIN(st_SetSRID(ST_POINT('+lon+', '+lat+'),4326), geom_commune)');
@@ -86,6 +104,7 @@ function getSecuriteByCodinsee(codinsee) {
 module.exports = {
     getCommuneByCoord,
     getMeteoByCoord,
+    getWikiByCodinsee,
     getSecuriteByCodinsee,
     getCommuneByCodinsee,
     getCloseTransaction,

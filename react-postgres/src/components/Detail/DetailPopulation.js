@@ -1,14 +1,77 @@
-import React from "react";
+import React, { useEffect, useState, useRef }  from "react";
 import "../../styles/Home.css";
+import Line from "../Charts/Line";
 import BarChart from "../Charts/Barchart";
 import PieChart from "../Charts/Piechart";
 import store from "../../store";
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from "react-router-dom";
 import "../../styles/Home.css";
+import axios from "axios";
+const { api_url } = require("../../settings");
 
 export default function DetailPopulation() {
     const datadb = store.getState().commune.properties;
+    const url = api_url + "/api/wiki/?codinsee=" + datadb.codinsee;
+
+    const [histo, setHisto] = useState(null);
+    const dataWiki = useRef(null);
+    const optionsWiki = useRef(null);
+    const [subscribe, setSubscribe] = useState(true);
+  
+    async function getHistoWiki() {
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        let close = response.data;
+        return close;
+      }
+    };
+
+    useEffect(() => {
+      async function fetch() {
+        let resultats = await getHistoWiki();
+        if (subscribe) {
+          setHisto(resultats);
+        }
+        if (histo != null) {
+          setSubscribe(false);
+          const labelsWiki = histo.map(row => row.annee);
+          dataWiki.current = {
+            labels: labelsWiki,
+            datasets: [
+                {fill: false,
+                  borderColor: '#ff4848',
+                  tension: 0.1,
+                  data: histo.map(row => row.vues)
+                },
+              ],
+            };
+            optionsWiki.current = {
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Evolution des vues wiki",
+                },
+                legend: {
+                  display: false,
+                  position: "bottom",
+                },
+                subtitle: {
+                  display: true,
+                  text: 'source wikipedia',
+                  position : "bottom",
+                  align : "end",
+                  font: {
+                  size: 11,
+                  style: 'italic',
+                  }
+                },
+              },
+            };
+          } 
+      }
+      fetch();
+    }, [histo]);
 
     const labelsMobilite = ["local", "commune", "departement", "region", "national", "international"];
 
@@ -46,41 +109,7 @@ export default function DetailPopulation() {
       }
     };
 
-    const labelsTransport = ["marche", "velo", "moto", "auto", "transport"];
 
-    const dataTransport = {
-      labels: labelsTransport,
-      datasets: [
-        { label: "nombre",
-          backgroundColor: ["#a0d8e7","#00cdb1","#ffa641", "#ff4848", "#ffc638"],
-          borderRadius : 4,
-          maxBarThickness : 30,
-          data: [datadb.nb_tra_marche, datadb.nb_tra_velo, datadb.nb_tra_moto, datadb.nb_tra_auto, datadb.nb_tra_transp],
-        },
-      ],
-    };
-    const optionsTransport = {
-      plugins: {
-        title: {
-          display: true,
-          text: "Mode de transports",
-        },
-        legend: {
-            display: true,
-            position: "bottom",
-        },
-        subtitle: {
-          display: true,
-          text: 'source INSEE 2019',
-          position : "bottom",
-          align : "end",
-          font: {
-          size: 11,
-          style: 'italic',
-          }
-        },
-      }
-    };
 
     const labelsAncien = ["0-2 ans", "2-4 ans", "4-9 ans", "10+ ans"];
     const dataAncien = {
@@ -99,7 +128,7 @@ export default function DetailPopulation() {
           text: "Durée de résidence dans la commune",
         },
         legend: {
-          display: true,
+          display: false,
           position: "bottom",
         },
         subtitle: {
@@ -134,7 +163,7 @@ export default function DetailPopulation() {
           text: "Situation familiale des ménages",
         },
         legend: {
-          display: true,
+          display: false,
           position: "bottom",
         },
         subtitle: {
@@ -163,10 +192,10 @@ export default function DetailPopulation() {
             <ul style={{
             display: "inline",
           }}>
-              <PieChart donnee={dataFamille} largeur={40} hauteur={40} options={optionsFamille}/>
+              <BarChart donnee={dataFamille} largeur={40} hauteur={40} options={optionsFamille}/>
               <BarChart donnee={dataMobilite} largeur={30} hauteur={35} options={optionsMobilite}/>
-              <PieChart donnee={dataTransport} largeur={30} hauteur={35} options={optionsTransport}/>
-              <PieChart donnee={dataAncien} largeur={40} hauteur={40} options={optionsAncien}/>
+              <BarChart donnee={dataAncien} largeur={40} hauteur={40} options={optionsAncien}/>
+              { dataWiki.current !== null && <Line donnee={dataWiki.current} largeur={30} hauteur={37} options={optionsWiki.current}/> }
             </ul>
           </div>
         </div>

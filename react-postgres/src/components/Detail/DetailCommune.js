@@ -12,6 +12,7 @@ export default function DetailCommune() {
     const datadb = store.getState().commune.properties;
 
     const url = api_url + "/api/securite/?codinsee=" + datadb.codinsee;
+
     const [histo, setHisto] = useState(null);
     const dataHisto = useRef(null);
     const optionsHisto = useRef(null);
@@ -85,44 +86,43 @@ export default function DetailCommune() {
       fetch();
     }, [histo]);
 
+    const labelsTransport = ["marche", "velo", "moto", "auto", "transport"];
 
-    const labelsSecurite= ["Vols", "Violences", "Cambriolages"];
-    const dataSecurite = {
-        labels: labelsSecurite,
-        datasets: [
-          { label: "pourcentage par habitant / logement",
-            backgroundColor: ["#a0d8e7", "#00cdb1", "#ffc638"],
-            borderRadius : 4,
-            maxBarThickness : 30,
-            data: [100*datadb.vols/(datadb.population*7), 100*datadb.violences/(datadb.population*7), 100*datadb.cambriolages/(datadb.nb_log*7)],
-          },
-        ],
+    const dataTransport = {
+      labels: labelsTransport,
+      datasets: [
+        { label: "nombre",
+          backgroundColor: ["#a0d8e7","#00cdb1","#ffa641", "#ff4848", "#ffc638"],
+          borderRadius : 4,
+          maxBarThickness : 30,
+          data: [datadb.nb_tra_marche, datadb.nb_tra_velo, datadb.nb_tra_moto, datadb.nb_tra_auto, datadb.nb_tra_transp],
+        },
+      ],
     };
-
-        const optionsSecurite = {
-            plugins: {
-              title: {
-                display: true,
-                text: "Pourcentage de faits par habitant par an",
-              },
-              legend: {
-                    display: false,
-                  position: "bottom",
-              },
-              subtitle: {
-                display: true,
-                text: 'source Police/Gendarmerie 2016-2022',
-                position : "bottom",
-                align : "end",
-                font: {
-                size: 11,
-                style: 'italic',
-                }
-              },
-            }
-          };
-        
-          const labelsActivite= ["Services", "Commerces", "Enseignement", "Sante", "Transports"];
+    const optionsTransport = {
+      plugins: {
+        title: {
+          display: true,
+          text: "Mode de transports",
+        },
+        legend: {
+            display: false,
+            position: "bottom",
+        },
+        subtitle: {
+          display: true,
+          text: 'source INSEE 2019',
+          position : "bottom",
+          align : "end",
+          font: {
+          size: 11,
+          style: 'italic',
+          }
+        },
+      }
+    };
+    
+    const labelsActivite= ["Services", "Commerces", "Enseignement", "Sante", "Transports"];
 
     const dataActivite = {
       labels: labelsActivite,
@@ -206,7 +206,7 @@ export default function DetailCommune() {
           </Link>
             <BarChart donnee={dataActivite} largeur={30} hauteur={37} options={optionsActivite}/>
             <BarChart donnee={dataDistance} largeur={30} hauteur={37} options={optionsDistance}/>
-            <BarChart donnee={dataSecurite} largeur={30} hauteur={37} options={optionsSecurite}/>
+            <BarChart donnee={dataTransport} largeur={30} hauteur={37} options={optionsTransport}/>
             { dataHisto.current !== null && <Line donnee={dataHisto.current} largeur={30} hauteur={37} options={optionsHisto.current}/> }
           </div>
         </div>

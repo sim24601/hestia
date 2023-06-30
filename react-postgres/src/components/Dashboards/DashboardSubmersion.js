@@ -21,30 +21,6 @@ export default function DashboardSubmersion() {
     const coutComplet = (coutMoyen+380)*nb_catnat*dureeResidence/40
     const coutCompletRCP85 = 1.82*(coutMoyen+380)*nb_catnat*dureeResidence/40
 
-    const labelsCout = ["Cout Moyen", "Cout Complet", "Cout Complet RCP8.5"];
-
-    const dataCout = {
-        labels: labelsCout,
-        datasets: [
-          {
-            backgroundColor: ["#a0d8e7","#00cdb1","#ffa641"],
-            data: [coutMoyen, coutComplet, coutCompletRCP85],
-          },
-        ],
-      };
-    
-      const optionsCout = {
-        plugins: {
-          title: {
-            display: true,
-            text: "Coût du risque",
-          },
-          legend: {
-            display: true,
-            position: "bottom",
-          },
-        },
-      };
 
     return (
         <div>
