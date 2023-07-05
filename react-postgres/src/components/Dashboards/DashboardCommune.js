@@ -12,7 +12,7 @@ export default function DashboardCommune() {
         <div>
             <ul>
                 <p>{datadb.nom_commune} - {datadb.statut} </p>
-                <p>Altitude : {datadb.altitude}m | Superficie : {datadb.superficie} m² | Vues wiki par an pour 1 habitant: {Math.round(100*datadb.vues/(8*datadb.population))/100}</p>
+                <p>Altitude : {datadb.altitude}m   |   Superficie : {datadb.superficie/100} km² </p>
             </ul>
         </div>
     );

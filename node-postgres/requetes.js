@@ -55,7 +55,7 @@ function getWikiByCodinsee(codinsee) {
       pool.query('select annee, ' +
       'SUM(vues) as vues ' +
       ' from carte.wiki ' +
-      'where code = \''+codinsee+'\' '+
+      'where codinsee = \''+codinsee+'\' '+
       ' and annee != 2023 ' +
       'group by annee',
       (error, results) => {
